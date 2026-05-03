@@ -1,4 +1,4 @@
-"""Analytics service using Qwen3-VL for tea leaf analysis and waste prevention recommendations."""
+"""Analytics service using OpenRouter vision models for tea leaf analysis and recommendations."""
 
 import os
 import base64
@@ -16,45 +16,63 @@ logger = logging.getLogger(__name__)
 
 
 class AnalyticsService:
-    """Service for analyzing detection results and providing waste prevention recommendations using Qwen3-VL."""
+    """Service for analyzing detection results and providing recommendations via OpenRouter."""
     
-    def __init__(self, ollama_host: str = "http://localhost:11434"):
+    def __init__(self, openrouter_base_url: str = "https://openrouter.ai/api/v1"):
         """
         Initialize analytics service.
         
         Args:
-            ollama_host: Ollama server host URL
+            openrouter_base_url: OpenRouter API base URL
         """
-        self.ollama_host = ollama_host
-        self.model_name = "qwen3-vl:235b-cloud"
+        self.openrouter_base_url = os.getenv("OPENROUTER_BASE_URL", openrouter_base_url).rstrip("/")
+        # Backward-compatible attribute name referenced in existing tests.
+        self.ollama_host = self.openrouter_base_url
+        self.model_name = os.getenv("OPENROUTER_MODEL", "nvidia/nemotron-nano-12b-v2-vl:free")
+        self.api_key = os.getenv("OPENROUTER_API_KEY", "")
+        self.site_url = os.getenv("OPENROUTER_SITE_URL", "")
+        self.app_name = os.getenv("OPENROUTER_APP_NAME", "NAIC Tea Leaf Detection")
         self.analytics_dir = "analytics"
         
         # Create analytics directory
         os.makedirs(self.analytics_dir, exist_ok=True)
         
-        # Check if Ollama server is available
-        self._check_ollama_connection()
+        # Check if OpenRouter is available
+        self._check_openrouter_connection()
     
-    def _check_ollama_connection(self):
-        """Check if Ollama server is available and model is ready."""
+    def _check_openrouter_connection(self):
+        """Check if OpenRouter is available and model appears in the catalog."""
+        if not self.api_key:
+            logger.warning("OPENROUTER_API_KEY is not set. Analytics requests will fail until it is configured.")
+            return
+
         try:
-            response = requests.get(f"{self.ollama_host}/api/tags", timeout=5)
+            headers = {
+                "Authorization": f"Bearer {self.api_key}",
+                "Content-Type": "application/json",
+            }
+            if self.site_url:
+                headers["HTTP-Referer"] = self.site_url
+            if self.app_name:
+                headers["X-Title"] = self.app_name
+
+            response = requests.get(f"{self.openrouter_base_url}/models", headers=headers, timeout=8)
             if response.status_code == 200:
-                models = response.json().get("models", [])
-                model_names = [model.get("name", "") for model in models]
+                models = response.json().get("data", [])
+                model_names = [model.get("id", "") for model in models]
                 
-                if not any(self.model_name in name for name in model_names):
-                    logger.warning(f"Qwen3-VL model ({self.model_name}) not found. Please install it with: ollama pull {self.model_name}")
+                if self.model_name not in model_names:
+                    logger.warning(f"Configured OpenRouter model ({self.model_name}) not listed in /models response")
                 else:
-                    logger.info("Ollama server and Qwen3-VL model are available")
+                    logger.info("OpenRouter connectivity verified and configured model is available")
             else:
-                logger.warning(f"Ollama server not responding correctly: {response.status_code}")
+                logger.warning(f"OpenRouter /models check failed: {response.status_code} - {response.text}")
         except Exception as e:
-            logger.warning(f"Could not connect to Ollama server at {self.ollama_host}: {e}")
+            logger.warning(f"Could not connect to OpenRouter at {self.openrouter_base_url}: {e}")
     
     def _encode_image_to_base64(self, image_path: str) -> str:
         """
-        Encode image to base64 string for Ollama API.
+        Encode image to base64 string for OpenRouter vision request.
         
         Args:
             image_path: Path to the image file
@@ -71,7 +89,7 @@ class AnalyticsService:
     
     def _create_analysis_prompt(self, detection_data: Dict[str, Any]) -> str:
         """
-        Create analysis prompt for Qwen3-VL.
+        Create analysis prompt for the configured vision model.
         
         Args:
             detection_data: Detection results data
@@ -146,7 +164,7 @@ Focus on practical, actionable advice that can help minimize waste and maximize 
                                annotated_image_path: str, 
                                session_id: Optional[int] = None) -> Dict[str, Any]:
         """
-        Analyze detection results using Qwen3-VL and provide recommendations.
+        Analyze detection results using the configured OpenRouter model and provide recommendations.
 
         Args:
             detection_data: Detection results from the detection service
@@ -170,35 +188,64 @@ Focus on practical, actionable advice that can help minimize waste and maximize 
             # Create analysis prompt
             prompt = self._create_analysis_prompt(detection_data)
             
-            # Prepare request for Ollama API
+            # Prepare request for OpenRouter chat completions (vision)
+            image_ext = Path(annotated_image_path).suffix.lower()
+            mime_type = {
+                ".png": "image/png",
+                ".webp": "image/webp",
+                ".gif": "image/gif",
+            }.get(image_ext, "image/jpeg")
+            image_data_uri = f"data:{mime_type};base64,{image_b64}"
+
             payload = {
                 "model": self.model_name,
-                "prompt": prompt,
-                "images": [image_b64],
-                "stream": False,
-                "options": {
-                    "temperature": 0.4,  # Lower temperature for more consistent analysis
-                    "num_predict": 4096   # Allow longer responses
-                }
+                "temperature": 0.4,
+                "max_tokens": 4096,
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": [
+                            {"type": "text", "text": prompt},
+                            {"type": "image_url", "image_url": {"url": image_data_uri}},
+                        ],
+                    }
+                ],
             }
+
+            headers = {
+                "Authorization": f"Bearer {self.api_key}",
+                "Content-Type": "application/json",
+            }
+            if self.site_url:
+                headers["HTTP-Referer"] = self.site_url
+            if self.app_name:
+                headers["X-Title"] = self.app_name
             
-            # Send request to Ollama
-            logger.info("Sending analysis request to Qwen3-VL...")
+            # Send request to OpenRouter
+            logger.info(f"Sending analysis request to OpenRouter model {self.model_name}...")
             response = requests.post(
-                f"{self.ollama_host}/api/generate",
+                f"{self.openrouter_base_url}/chat/completions",
                 json=payload,
+                headers=headers,
                 timeout=60  # 1 minute timeout for vision model
             )
             
             if response.status_code != 200:
-                raise Exception(f"Ollama API error: {response.status_code} - {response.text}")
+                raise Exception(f"OpenRouter API error: {response.status_code} - {response.text}")
             
             # Parse response
             response_data = response.json()
-            llama_response = response_data.get("response", "")
+            choices = response_data.get("choices", [])
+            message = choices[0].get("message", {}) if choices else {}
+            llama_response = message.get("content", "")
+            if isinstance(llama_response, list):
+                # Some providers may return segmented content blocks.
+                text_parts = [part.get("text", "") for part in llama_response if isinstance(part, dict)]
+                llama_response = "\n".join(part for part in text_parts if part)
+
             if not llama_response:
-                raise Exception("Empty response from Qwen3-VL")
-            logger.info(f"Received response from Qwen3-VL, length: {len(llama_response)} characters")
+                raise Exception("Empty response from OpenRouter model")
+            logger.info(f"Received response from {self.model_name}, length: {len(llama_response)} characters")
             analysis_result = self._parse_llama_response(llama_response)
             logger.info(f"Parsed analysis result from response for image: {annotated_image_path}")
             # Add metadata
@@ -232,10 +279,10 @@ Focus on practical, actionable advice that can help minimize waste and maximize 
     
     def _parse_llama_response(self, response: str) -> Dict[str, Any]:
         """
-        Parse JSON response from Qwen3-VL.
+        Parse JSON response from the configured model.
         
         Args:
-            response: Raw response string from Qwen3-VL
+            response: Raw response string from the model
             
         Returns:
             Parsed analysis data

@@ -2,7 +2,7 @@
 """
 Test script for Tea Leaf Analytics functionality.
 
-This script tests the analytics service integration with Qwen3-VL 235B Cloud
+This script tests the analytics service integration with OpenRouter vision models
 to ensure waste prevention recommendations are working correctly.
 """
 
@@ -23,14 +23,14 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 
-def test_ollama_connection():
-    """Test if Ollama is running and accessible."""
-    print("🔍 Testing Ollama connection...")
+def test_openrouter_connection():
+    """Test if OpenRouter configuration is set and service is reachable."""
+    print("🔍 Testing OpenRouter connection...")
     
     try:
         analytics_service = AnalyticsService()
         print("✅ Analytics service initialized successfully")
-        print(f"   - Ollama host: {analytics_service.ollama_host}")
+        print(f"   - OpenRouter endpoint: {analytics_service.openrouter_base_url}")
         print(f"   - Model: {analytics_service.model_name}")
         return True
     except Exception as e:
@@ -238,7 +238,7 @@ def main():
     print("=" * 50)
     
     tests = [
-        ("Ollama Connection", test_ollama_connection),
+        ("OpenRouter Connection", test_openrouter_connection),
         ("Mock Detection Data", test_mock_detection_data),
         ("Detection Integration", test_real_detection_integration),
         ("Batch Analytics", test_batch_analytics),
@@ -273,8 +273,8 @@ def main():
     else:
         print("⚠️  Some tests failed. Check the setup and try again.")
         print("\n💡 Tips:")
-        print("   - Ensure Ollama is running: ollama serve")
-        print("   - Install the model: ollama pull qwen3-vl:235b-cloud")
+        print("   - Ensure OPENROUTER_API_KEY is set in .env")
+        print("   - Verify OPENROUTER_MODEL is available on OpenRouter")
         print("   - Check system resources (RAM, disk space)")
         print("   - Add test images to static/images/ directory")
     

@@ -198,7 +198,7 @@ async def get_api_info():
                 "Detection history",
                 "PDF and CSV reports",
                 "Real-time progress tracking",
-                "AI-powered analytics with Qwen3-VL",
+                "AI-powered analytics with OpenRouter (Nemotron Nano 12B VL)",
                 "Farmer decision support for sell/process/discard routing",
                 "Waste prevention recommendations",
                 "Quality metrics tracking"

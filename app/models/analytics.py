@@ -17,7 +17,7 @@ class AnalysisResult(Base):
     session_id = Column(Integer, ForeignKey("detection_sessions.id"), nullable=True)
     
     # Analysis metadata
-    model_used = Column(String(100), default="qwen3-vl:235b-cloud")
+    model_used = Column(String(100), default="nvidia/nemotron-nano-12b-v2-vl:free")
     processing_time = Column(Float, default=0.0)
     status = Column(String(50), default="pending")  # pending, completed, failed, completed_fallback
     error_message = Column(Text)
