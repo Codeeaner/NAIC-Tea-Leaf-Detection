@@ -1,0 +1,88 @@
+{
+  "analysis_id": "analysis_85af5749_1762613514",
+  "session_id": 83,
+  "timestamp": "2025-11-08T22:51:25.372393",
+  "processing_time": 28.918481,
+  "model_used": "qwen3-vl:235b-cloud",
+  "image_path": "results\\c07250c8-e7c0-4d73-a898-7f5b37b68848_83_annotated.jpg",
+  "detection_summary": {
+    "healthy_count": 3,
+    "unhealthy_count": 3,
+    "total_count": 6,
+    "health_percentage": 50.0
+  },
+  "ai_analysis": {
+    "analysis": {
+      "overall_assessment": "The tea leaf batch shows significant quality degradation with 50% of leaves classified as unhealthy, exhibiting necrotic damage and structural defects. While healthy leaves retain good color and structure, the prevalence of diseased leaves compromises overall batch integrity.",
+      "severity_level": "Medium",
+      "quality_grade": "Below standard"
+    },
+    "pollution_diagnosis": {
+      "symptoms_observed": "Black or necrotic spots",
+      "primary_pollution_source": [
+        "Acid rain or excess nitrogen fertilizers"
+      ],
+      "pollution_reduction_solutions": [
+        "Install temporary rain shields during precipitation events to prevent direct acid rain contact",
+        "Conduct soil pH testing and apply lime amendments to neutralize soil acidity",
+        "Implement buffer zones with acid-tolerant vegetation to intercept acidic precipitation"
+      ]
+    },
+    "processing_recommendations": {
+      "immediate_actions": [
+        "Isolate healthy leaves from damaged ones within 24 hours to prevent cross-contamination",
+        "Reduce processing temperature by 10-15°C to minimize further degradation of compromised leaves",
+        "Increase airflow during withering to prevent moisture retention in necrotic areas"
+      ],
+      "sorting_strategy": "Manual separation of leaves with >30% necrosis or holes; categorize into three tiers: premium (healthy), secondary (minor damage), and reject (severe damage)",
+      "processing_method": "Process healthy leaves using orthodox rolling method for premium quality; damaged leaves require quick withering and light oxidation for lower-grade black tea",
+      "quality_preservation": [
+        "Store healthy leaves in humidity-controlled environments (60-65% RH)",
+        "Use antioxidant-rich processing additives for damaged leaf portions",
+        "Limit exposure to light during processing to prevent chlorophyll degradation"
+      ]
+    },
+    "waste_prevention": {
+      "salvageable_portions": "Healthy leaves (50%) and marginally damaged leaves with <30% necrosis (15-20%)",
+      "alternative_uses": [
+        "Necrotic leaf fragments for organic fertilizer production",
+        "Holed leaves for low-grade herbal infusions with added flavorings",
+        "Browner leaves for compost tea production"
+      ],
+      "composting_guidelines": "Shred unusable leaves and mix with 3:1 ratio of carbon-rich materials (sawdust, straw); maintain 55-60°C temperature for 3 weeks to eliminate pathogens",
+      "prevention_measures": [
+        "Establish windbreaks with nitrogen-fixing trees to buffer acid rain",
+        "Implement precision fertilization to avoid nitrogen excess",
+        "Install real-time pH monitoring in irrigation systems"
+      ]
+    },
+    "economic_impact": {
+      "estimated_loss_percentage": "35%",
+      "cost_saving_opportunities": [
+        "Recover 20% value from damaged leaves through secondary product lines",
+        "Reduce waste disposal costs by 40% through on-site composting",
+        "Save 15% in processing costs by optimizing energy use for smaller healthy leaf batches"
+      ],
+      "value_recovery_methods": [
+        "Create premium tea blends using 70% healthy leaves with 30% processed damaged leaves",
+        "Partner with cosmetic companies for leaf extract production",
+        "Develop educational kits for agricultural training programs"
+      ]
+    },
+    "recommendations": {
+      "priority_actions": [
+        "Immediately implement manual sorting with quality control checkpoints",
+        "Conduct soil and rainwater analysis to confirm acidification levels",
+        "Install temporary rain protection structures within 14 days"
+      ],
+      "timeline": "Sorting: Immediate (24h); Soil analysis: 7 days; Structural solutions: 2-4 weeks",
+      "monitoring_points": [
+        "Daily necrosis progression in stored leaves",
+        "Soil pH levels biweekly",
+        "Rainwater acidity during monsoon season",
+        "Economic viability of secondary product lines monthly"
+      ]
+    }
+  },
+  "status": "completed"
+}

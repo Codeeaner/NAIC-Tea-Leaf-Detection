@@ -1,0 +1,72 @@
+{
+  "analysis_id": "analysis_ebf1c568_1762075682",
+  "session_id": 3,
+  "timestamp": "2025-11-02T17:27:35.794678",
+  "processing_time": 26.501206,
+  "model_used": "qwen3-vl:235b-cloud",
+  "image_path": "results\\PXL_20221213_071326300-MP_jpg.rf.4c39b15d711097b8e4c027f178c49007_3_annotated.jpg",
+  "detection_summary": {
+    "healthy_count": 1,
+    "unhealthy_count": 0,
+    "total_count": 1,
+    "health_percentage": 100.0
+  },
+  "ai_analysis": {
+    "analysis": {
+      "overall_assessment": "The tea leaf shows no visible signs of disease or pollution damage, with vibrant green color and intact structure indicating optimal health. The high confidence score (0.90) confirms robust physiological condition.",
+      "severity_level": "Low",
+      "quality_grade": "Premium"
+    },
+    "pollution_diagnosis": {},
+    "processing_recommendations": {
+      "immediate_actions": [
+        "Proceed with standard harvesting protocols",
+        "Handle leaves with care to maintain integrity",
+        "Transport to processing facility within 2 hours of harvest"
+      ],
+      "sorting_strategy": "All leaves meet premium quality standards; no sorting required beyond standard size/grade separation",
+      "processing_method": "Traditional orthodox processing with controlled oxidation for premium green tea",
+      "quality_preservation": [
+        "Maintain 18-22°C temperature during transport",
+        "Process within 4 hours of harvest to prevent enzymatic degradation",
+        "Use shaded drying methods to preserve chlorophyll"
+      ]
+    },
+    "waste_prevention": {
+      "salvageable_portions": "100% of harvested leaves are suitable for premium processing",
+      "alternative_uses": [],
+      "composting_guidelines": "Not applicable for healthy leaves; compost only if leaves become unsuitable post-harvest",
+      "prevention_measures": [
+        "Implement regular field monitoring every 72 hours",
+        "Maintain buffer zones between tea fields and potential pollution sources",
+        "Use organic fertilizers to prevent chemical contamination"
+      ]
+    },
+    "economic_impact": {
+      "estimated_loss_percentage": "0.0%",
+      "cost_saving_opportunities": [
+        "Optimize harvest timing to maximize yield",
+        "Reduce processing waste through precise machinery calibration",
+        "Sell premium-grade leaves at 25-30% higher market price"
+      ],
+      "value_recovery_methods": [
+        "Direct sale as premium loose-leaf tea",
+        "Create value-added products like matcha from first-flush leaves"
+      ]
+    },
+    "recommendations": {
+      "priority_actions": [
+        "Maintain current organic farming practices",
+        "Install real-time air quality monitoring at field edges",
+        "Train harvesters in precision plucking techniques"
+      ],
+      "timeline": "Immediate (0-7 days) for monitoring setup; Ongoing for farming practices",
+      "monitoring_points": [
+        "Leaf color consistency",
+        "Soil pH levels",
+        "Airborne particulate counts"
+      ]
+    }
+  },
+  "status": "completed"
+}

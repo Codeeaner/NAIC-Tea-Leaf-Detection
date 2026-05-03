@@ -1,0 +1,26 @@
+2025-05-27 11:12:54,265 - INFO - Validating dataset structure...
+2025-05-27 11:12:54,273 - INFO - Dataset structure validation passed!
+2025-05-27 11:12:54,273 - INFO - Creating data.yaml configuration file...
+2025-05-27 11:12:54,273 - INFO - Analyzing dataset...
+2025-05-27 11:12:59,379 - INFO - Dataset Statistics:
+2025-05-27 11:12:59,379 - INFO - Train: 840 images, 840 labels
+2025-05-27 11:12:59,379 - INFO - Valid: 240 images, 240 labels
+2025-05-27 11:12:59,379 - INFO - Test: 120 images, 120 labels
+2025-05-27 11:12:59,379 - INFO - Number of classes: 4
+2025-05-27 11:12:59,379 - WARNING - Provided 7 class names but found 4 classes. Using generic names.
+2025-05-27 11:12:59,380 - INFO - Created data.yaml at: data.yaml
+2025-05-27 11:12:59,380 - INFO - Loading YOLO model: yolov8n.pt
+2025-05-27 11:13:03,737 - INFO - Model loaded successfully!
+2025-05-27 11:13:03,737 - INFO - Starting model training...
+2025-05-27 11:13:03,737 - INFO - Training parameters:
+2025-05-27 11:13:03,737 - INFO -   Epochs: 100
+2025-05-27 11:13:03,737 - INFO -   Image size: 640
+2025-05-27 11:13:03,738 - INFO -   Batch size: 16
+2025-05-27 11:13:03,738 - INFO -   Learning rate: 0.01
+2025-05-27 11:13:03,738 - INFO -   Device: cpu
+2025-05-27 11:13:07,275 - ERROR - Error during training: Dataset 'data.yaml' error  
+Dataset 'data.yaml' images not found , missing path 'C:\Users\amber\2024\Monash_AI\datasets\valid\images'
+Note dataset download directory is 'C:\Users\amber\2024\Monash_AI\datasets'. You can update this in 'C:\Users\amber\AppData\Roaming\Ultralytics\settings.json'
+2025-05-27 11:13:07,276 - ERROR - Training pipeline failed: Dataset 'data.yaml' error  
+Dataset 'data.yaml' images not found , missing path 'C:\Users\amber\2024\Monash_AI\datasets\valid\images'
+Note dataset download directory is 'C:\Users\amber\2024\Monash_AI\datasets'. You can update this in 'C:\Users\amber\AppData\Roaming\Ultralytics\settings.json'

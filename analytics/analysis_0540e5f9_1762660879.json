@@ -1,0 +1,88 @@
+{
+  "analysis_id": "analysis_0540e5f9_1762660879",
+  "session_id": 63,
+  "timestamp": "2025-11-09T12:00:53.963186",
+  "processing_time": 25.080763,
+  "model_used": "qwen3-vl:235b-cloud",
+  "image_path": "results\\captured_image_1762604704416_56_63_annotated.jpg",
+  "detection_summary": {
+    "healthy_count": 2,
+    "unhealthy_count": 4,
+    "total_count": 6,
+    "health_percentage": 33.33333333333333
+  },
+  "ai_analysis": {
+    "analysis": {
+      "overall_assessment": "The tea leaf batch shows significant quality degradation with 66.7% of leaves classified as unhealthy, exhibiting severe necrotic damage and structural compromise. Only 33.3% of leaves meet basic health criteria, indicating poor harvest quality.",
+      "severity_level": "High",
+      "quality_grade": "Below standard"
+    },
+    "pollution_diagnosis": {
+      "symptoms_observed": "Black or necrotic spots",
+      "primary_pollution_source": [
+        "Pesticide or chemical spray"
+      ],
+      "pollution_reduction_solutions": [
+        "Immediately implement buffer zones between tea fields and neighboring agricultural areas using physical barriers",
+        "Switch to organic pest control methods (e.g., neem oil, beneficial insects) within 2 weeks",
+        "Install windbreaks and protective netting to reduce chemical drift from adjacent farms",
+        "Conduct soil testing for residual chemical accumulation and remediate affected areas"
+      ]
+    },
+    "processing_recommendations": {
+      "immediate_actions": [
+        "Isolate healthy leaves from damaged ones to prevent cross-contamination",
+        "Process healthy leaves within 24 hours to preserve quality",
+        "Document damage patterns for supplier accountability"
+      ],
+      "sorting_strategy": "Manual sorting by visual inspection: separate leaves with >30% necrotic area as unusable, 10-30% damage for secondary processing, and <10% damage for premium processing",
+      "processing_method": "Healthy leaves: orthodox rolling and oxidation for premium black tea. Moderately damaged leaves: CTC (Crush, Tear, Curl) processing for lower-grade tea bags",
+      "quality_preservation": [
+        "Maintain 15-18°C temperature during handling",
+        "Use humidity-controlled storage for healthy leaves",
+        "Avoid mechanical damage during transport"
+      ]
+    },
+    "waste_prevention": {
+      "salvageable_portions": "Healthy leaves (33.3%) and marginally damaged leaves with <20% necrosis",
+      "alternative_uses": [
+        "Damaged leaves for composting or organic fertilizer production",
+        "Necrotic leaf fragments for biochar production",
+        "Low-grade tea for industrial tannin extraction"
+      ],
+      "composting_guidelines": "Mix damaged leaves with 3:1 ratio of carbon-rich material (sawdust, straw), maintain 55-60°C temperature for 14 days with weekly turning to ensure pathogen destruction",
+      "prevention_measures": [
+        "Implement integrated pest management (IPM) protocols",
+        "Establish 50m chemical-free buffer zones around tea fields",
+        "Train staff in precise pesticide application techniques"
+      ]
+    },
+    "economic_impact": {
+      "estimated_loss_percentage": "66.7",
+      "cost_saving_opportunities": [
+        "Recover 20-30% value from damaged leaves through composting/industrial use",
+        "Reduce future losses through buffer zone implementation (est. 40% damage reduction)",
+        "Negotiate compensation from neighboring farms for chemical drift"
+      ],
+      "value_recovery_methods": [
+        "Sell healthy leaves as premium grade",
+        "Process marginally damaged leaves into value-added tea products",
+        "Create compost for farm use to reduce fertilizer costs"
+      ]
+    },
+    "recommendations": {
+      "priority_actions": [
+        "Immediate manual sorting and isolation of healthy leaves",
+        "Implement chemical drift buffer zones within 7 days",
+        "Transition to organic pest control within 14 days"
+      ],
+      "timeline": "Critical actions (sorting, buffer zones) within 1 week; full pest management transition in 30 days; soil remediation in 90 days",
+      "monitoring_points": [
+        "Daily leaf health assessment in new growth",
+        "Weekly chemical residue testing in soil",
+        "Monthly review of pest damage patterns"
+      ]
+    }
+  },
+  "status": "completed"
+}

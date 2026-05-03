@@ -1,0 +1,83 @@
+{
+  "analysis_id": "analysis_99e15ced_1762510770",
+  "session_id": 8,
+  "timestamp": "2025-11-07T18:19:08.946995",
+  "processing_time": 21.418844,
+  "model_used": "qwen3-vl:235b-cloud",
+  "image_path": "results\\captured_image_1762510732222_8_annotated.jpg",
+  "detection_summary": {
+    "healthy_count": 0,
+    "unhealthy_count": 2,
+    "total_count": 2,
+    "health_percentage": 0.0
+  },
+  "ai_analysis": {
+    "analysis": {
+      "overall_assessment": "Both detected tea leaves exhibit severe necrotic damage with extensive dark spots and discoloration, indicating critical health deterioration. No viable healthy tissue remains for premium processing.",
+      "severity_level": "High",
+      "quality_grade": "Reject"
+    },
+    "pollution_diagnosis": {
+      "symptoms_observed": "Black or necrotic spots",
+      "primary_pollution_source": [
+        "Sulfur dioxide (SO₂) exposure"
+      ],
+      "pollution_reduction_solutions": [
+        "Install anti-pollution windbreaks (e.g., bamboo screens) around tea plots to filter airborne SO₂",
+        "Apply calcium-based soil amendments to neutralize acidification from SO₂ byproducts",
+        "Implement real-time air quality monitoring with harvest suspension protocols during high-pollution periods"
+      ]
+    },
+    "processing_recommendations": {
+      "immediate_actions": [
+        "Halt processing of affected batch immediately",
+        "Isolate leaves in sealed containers to prevent cross-contamination",
+        "Conduct lab testing for residual sulfur compounds"
+      ],
+      "sorting_strategy": "Complete rejection of all leaves; no salvageable portions for commercial processing",
+      "processing_method": "Not applicable - leaves must be diverted to waste stream",
+      "quality_preservation": [
+        "If any marginally affected leaves are found in future batches, process separately as low-grade 'kukicha' twig tea",
+        "Use controlled oxidation to mask minor defects in borderline cases"
+      ]
+    },
+    "waste_prevention": {
+      "salvageable_portions": "None - all leaf tissue shows advanced necrosis",
+      "alternative_uses": [
+        "Soil amendment for non-edible crops after composting",
+        "Biochar production for soil remediation"
+      ],
+      "composting_guidelines": "Layer with 3:1 ratio of carbon-rich materials (sawdust, straw), maintain 55-65°C for 14 days to neutralize pollutants",
+      "prevention_measures": [
+        "Establish 50m buffer zone with SO₂-absorbing species (e.g., willow, poplar)",
+        "Switch to sulfur-free fertilizers and organic pest control methods",
+        "Implement predictive modeling for pollution events using weather data"
+      ]
+    },
+    "economic_impact": {
+      "estimated_loss_percentage": "100%",
+      "cost_saving_opportunities": [
+        "Convert waste stream to certified organic compost for sale to neighboring farms",
+        "Claim crop insurance for pollution-related losses with documented air quality reports"
+      ],
+      "value_recovery_methods": [
+        "Produce limited-edition 'remediation tea' from future healthy harvests with pollution-control storytelling",
+        "Partner with environmental agencies for pollution mitigation grants"
+      ]
+    },
+    "recommendations": {
+      "priority_actions": [
+        "Install air quality sensors with SMS alerts for SO₂ levels above 0.03 ppm",
+        "Conduct soil sulfur testing and initiate remediation within 2 weeks",
+        "Train harvesters to identify early-stage pollution symptoms using mobile app diagnostics"
+      ],
+      "timeline": "Immediate (0-7 days) for containment, 30 days for soil remediation, 90 days for full mitigation system implementation",
+      "monitoring_points": [
+        "Daily SO₂ concentration levels",
+        "New leaf emergence health (biweekly visual inspection)",
+        "Soil pH and sulfur content (monthly testing)"
+      ]
+    }
+  },
+  "status": "completed"
+}

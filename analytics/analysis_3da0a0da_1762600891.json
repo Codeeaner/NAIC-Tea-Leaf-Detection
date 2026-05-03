@@ -1,0 +1,82 @@
+{
+  "analysis_id": "analysis_3da0a0da_1762600891",
+  "session_id": 22,
+  "timestamp": "2025-11-08T19:21:04.871002",
+  "processing_time": 26.934825,
+  "model_used": "qwen3-vl:235b-cloud",
+  "image_path": "results\\captured_image_1762600857408_22_annotated.jpg",
+  "detection_summary": {
+    "healthy_count": 0,
+    "unhealthy_count": 1,
+    "total_count": 1,
+    "health_percentage": 0.0
+  },
+  "ai_analysis": {
+    "analysis": {
+      "overall_assessment": "The single tea leaf in the image shows severe discoloration and necrosis, with significant browning along the edges and central vein, indicating advanced deterioration. No healthy tissue remains, making it unsuitable for premium processing.",
+      "severity_level": "High",
+      "quality_grade": "Reject"
+    },
+    "pollution_diagnosis": {
+      "symptoms_observed": "Burnt edges or browning tips",
+      "primary_pollution_source": [
+        "Ozone (O3) exposure"
+      ],
+      "pollution_reduction_solutions": [
+        "Apply kaolin clay-based foliar sprays to create a reflective barrier reducing ozone uptake",
+        "Install windbreaks with ozone-tolerant species (e.g., black locust) around tea plantations",
+        "Implement real-time air quality monitoring to halt harvesting during high-ozone periods"
+      ]
+    },
+    "processing_recommendations": {
+      "immediate_actions": [
+        "Isolate all affected leaves immediately to prevent cross-contamination",
+        "Conduct lab testing for residual pollutants before any repurposing",
+        "Adjust processing humidity to 60-65% to minimize further oxidation"
+      ],
+      "sorting_strategy": "Reject all leaves showing >30% browning; use optical sorting machines with spectral analysis for future batches",
+      "processing_method": "Complete rejection for orthodox processing; consider low-temperature composting if contamination levels are safe",
+      "quality_preservation": [
+        "Store unaffected future harvests in nitrogen-flushed containers",
+        "Implement pre-processing cold shock treatment (4°C for 2 hours)"
+      ]
+    },
+    "waste_prevention": {
+      "salvageable_portions": "None - entire leaf shows irreversible damage",
+      "alternative_uses": [
+        "Non-food industrial applications (e.g., natural dye extraction)",
+        "Soil amendment after pollutant testing confirms safety"
+      ],
+      "composting_guidelines": "Shred leaves and mix with 3:1 ratio of carbon-rich materials (sawdust/straw); maintain 55-60°C for 14 days to neutralize contaminants",
+      "prevention_measures": [
+        "Plant ozone-bioindicator species (e.g., snap beans) as early warning system",
+        "Install high-efficiency particulate air (HEPA) filters in processing facilities"
+      ]
+    },
+    "economic_impact": {
+      "estimated_loss_percentage": "100%",
+      "cost_saving_opportunities": [
+        "Redirect rejected leaves to industrial partners for dye extraction",
+        "Claim crop insurance for pollution-related losses with documented air quality data"
+      ],
+      "value_recovery_methods": [
+        "Convert to organic compost for non-food crops",
+        "Use in bioremediation trials for contaminated soils"
+      ]
+    },
+    "recommendations": {
+      "priority_actions": [
+        "Implement immediate air quality monitoring with EPA-approved ozone sensors",
+        "Establish 10-meter buffer zones with pollution-absorbing vegetation (e.g., willows)",
+        "Train staff in early symptom recognition using AI-assisted mobile diagnostics"
+      ],
+      "timeline": "Critical actions within 72 hours; buffer zones in 2 weeks; monitoring system operational in 30 days",
+      "monitoring_points": [
+        "Daily ozone concentration levels at canopy height",
+        "New leaf growth for symptom recurrence",
+        "Soil pH and heavy metal content quarterly"
+      ]
+    }
+  },
+  "status": "completed"
+}

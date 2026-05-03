@@ -1,0 +1,87 @@
+{
+  "analysis_id": "analysis_348917ec_1762650082",
+  "session_id": 58,
+  "timestamp": "2025-11-09T09:00:47.834219",
+  "processing_time": 34.814023,
+  "model_used": "qwen3-vl:235b-cloud",
+  "image_path": "results\\captured_image_1762604704416_56_58_annotated.jpg",
+  "detection_summary": {
+    "healthy_count": 2,
+    "unhealthy_count": 4,
+    "total_count": 6,
+    "health_percentage": 33.33333333333333
+  },
+  "ai_analysis": {
+    "analysis": {
+      "overall_assessment": "The tea leaf batch shows significant quality degradation with 66.7% of leaves classified as unhealthy, indicating severe environmental stress or contamination. Healthy leaves exhibit vibrant green coloration, while unhealthy leaves display extensive necrosis, discoloration, and structural damage.",
+      "severity_level": "High",
+      "quality_grade": "Below standard"
+    },
+    "pollution_diagnosis": {
+      "symptoms_observed": "Black or necrotic spots",
+      "primary_pollution_source": [
+        "Pesticide or chemical spray"
+      ],
+      "pollution_reduction_solutions": [
+        "Immediately halt application of suspected chemical sprays and conduct residue testing",
+        "Install windbreaks or protective netting to reduce chemical drift from neighboring fields",
+        "Transition to integrated pest management (IPM) with organic alternatives like neem oil or biopesticides within 2 weeks"
+      ]
+    },
+    "processing_recommendations": {
+      "immediate_actions": [
+        "Hand-sort all leaves within 4 hours to prevent cross-contamination",
+        "Isolate healthy leaves in humidity-controlled storage (60-70% RH)",
+        "Conduct microbial testing on unhealthy leaves for pathogen presence"
+      ],
+      "sorting_strategy": "Separate leaves into three tiers: 1) Fully healthy (0.57+ confidence) for premium processing, 2) Partially damaged (0.49-0.69) for secondary products, 3) Severely necrotic (<0.49) for waste stream",
+      "processing_method": "Process healthy leaves using orthodox rolling method for premium black tea; use damaged leaves for CTC (Crush, Tear, Curl) processing at reduced temperature (85°C) to minimize oxidation",
+      "quality_preservation": [
+        "Apply ascorbic acid wash (0.5% solution) to healthy leaves pre-processing",
+        "Maintain processing temperature below 90°C to preserve polyphenols",
+        "Use nitrogen flushing during packaging of healthy leaf batches"
+      ]
+    },
+    "waste_prevention": {
+      "salvageable_portions": "2 healthy leaves (33.3%) and marginally damaged portions of 2 moderately unhealthy leaves (15-20% of total batch)",
+      "alternative_uses": [
+        "Necrotic leaves for composting with coffee pulp to create nitrogen-rich soil amendment",
+        "Damaged leaf fragments for herbal tea blends with mint/lemongrass (50:50 ratio)",
+        "Leaf residue for biogas production through anaerobic digestion"
+      ],
+      "composting_guidelines": "Layer damaged leaves with 3:1 ratio of brown materials (sawdust, dry leaves), maintain 55-60°C for 14 days with weekly turning, add EM-1 microbial inoculant to accelerate decomposition",
+      "prevention_measures": [
+        "Implement buffer zones between tea fields and chemical-sprayed areas",
+        "Install real-time air quality monitors for pesticide drift detection",
+        "Conduct quarterly soil testing for chemical residues"
+      ]
+    },
+    "economic_impact": {
+      "estimated_loss_percentage": "66.7%",
+      "cost_saving_opportunities": [
+        "Recover 20% value from damaged leaves through herbal blend production",
+        "Reduce waste disposal costs by 40% via on-site composting",
+        "Qualify for organic certification within 18 months to access premium markets"
+      ],
+      "value_recovery_methods": [
+        "Partner with local herbal tea manufacturers for damaged leaf sales",
+        "Create value-added compost product for sale to neighboring farms",
+        "Use leaf residue for biogas to offset 15% of processing energy costs"
+      ]
+    },
+    "recommendations": {
+      "priority_actions": [
+        "Immediate manual sorting and isolation of healthy leaves within 24 hours",
+        "Conduct chemical residue analysis on soil and leaf samples within 72 hours",
+        "Implement windbreak installation and IPM training within 14 days"
+      ],
+      "timeline": "Critical actions (0-3 days), Pollution control (2-4 weeks), Systemic improvements (3-6 months)",
+      "monitoring_points": [
+        "Daily leaf health assessment using spectral imaging",
+        "Weekly chemical residue testing in soil/water",
+        "Monthly yield comparison of IPM vs conventional plots"
+      ]
+    }
+  },
+  "status": "completed"
+}

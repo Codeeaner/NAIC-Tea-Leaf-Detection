@@ -1,0 +1,84 @@
+{
+  "analysis_id": "analysis_068df35a_1762605307",
+  "session_id": 71,
+  "timestamp": "2025-11-08T20:34:32.950329",
+  "processing_time": 34.409049,
+  "model_used": "qwen3-vl:235b-cloud",
+  "image_path": "results\\captured_image_1762605265330_71_annotated.jpg",
+  "detection_summary": {
+    "healthy_count": 0,
+    "unhealthy_count": 1,
+    "total_count": 1,
+    "health_percentage": 0.0
+  },
+  "ai_analysis": {
+    "analysis": {
+      "overall_assessment": "The single detected tea leaf shows severe discoloration and necrotic damage, indicating critical health deterioration. No healthy portions are visible, rendering the leaf unsuitable for standard tea production.",
+      "severity_level": "High",
+      "quality_grade": "Reject"
+    },
+    "pollution_diagnosis": {
+      "symptoms_observed": "Black or necrotic spots",
+      "primary_pollution_source": [
+        "Sulfur dioxide (SO₂)"
+      ],
+      "pollution_reduction_solutions": [
+        "Install windbreak barriers (e.g., bamboo screens) around tea bushes to reduce direct pollutant exposure",
+        "Apply calcium-based foliar sprays to neutralize acidic pollutants on leaf surfaces",
+        "Transition to low-sulfur fuel sources for nearby machinery and collaborate with local industries to reduce SO₂ emissions"
+      ]
+    },
+    "processing_recommendations": {
+      "immediate_actions": [
+        "Isolate and discard all visibly damaged leaves to prevent contamination of healthy batches",
+        "Conduct pH testing of soil and leaf samples to confirm sulfur compound accumulation",
+        "Sanitize processing equipment to avoid cross-contamination"
+      ],
+      "sorting_strategy": "Reject all leaves from this batch; implement optical sorting technology in future harvests to detect necrotic spots at early stages",
+      "processing_method": "Not suitable for orthodox or CTC tea processing; consider experimental extraction for non-beverage applications only",
+      "quality_preservation": [
+        "Store healthy leaves (if any in future harvests) in airtight containers with oxygen absorbers",
+        "Process healthy leaves within 24 hours of harvest to minimize oxidation"
+      ]
+    },
+    "waste_prevention": {
+      "salvageable_portions": "None - the leaf is fully necrotic with no viable tissue",
+      "alternative_uses": [
+        "Use as biomass for biochar production to improve soil structure",
+        "Extract tannins for natural dye applications in textile industries"
+      ],
+      "composting_guidelines": "Layer with 3:1 ratio of green waste (e.g., grass clippings) to balance carbon content; maintain 55-65°C for 14 days to neutralize pollutants",
+      "prevention_measures": [
+        "Plant pollution-tolerant cover crops like clover between tea rows",
+        "Implement real-time air quality monitoring with SO₂ sensors at canopy height",
+        "Rotate tea cultivars to SO₂-resistant varieties such as 'TRF 1' or 'S15/10'"
+      ]
+    },
+    "economic_impact": {
+      "estimated_loss_percentage": "100%",
+      "cost_saving_opportunities": [
+        "Redirect rejected leaves to low-cost biomass energy projects",
+        "Claim insurance coverage for pollution-related crop damage",
+        "Partner with research institutions for pollutant remediation grants"
+      ],
+      "value_recovery_methods": [
+        "Convert to organic compost for sale to neighboring farms",
+        "Extract residual polyphenols for cosmetic industry applications"
+      ]
+    },
+    "recommendations": {
+      "priority_actions": [
+        "Deploy SO₂ air quality monitors within 72 hours to establish baseline pollution levels",
+        "Install windbreak barriers within 2 weeks before next monsoon season",
+        "Conduct soil remediation with lime application to neutralize sulfur compounds within 30 days"
+      ],
+      "timeline": "Immediate (0-7 days) for monitoring, short-term (2-4 weeks) for barriers, medium-term (1-3 months) for soil remediation",
+      "monitoring_points": [
+        "Daily SO₂ concentration levels at 1m height",
+        "Weekly leaf tissue analysis for sulfur accumulation",
+        "Monthly soil pH and sulfate content measurements"
+      ]
+    }
+  },
+  "status": "completed"
+}

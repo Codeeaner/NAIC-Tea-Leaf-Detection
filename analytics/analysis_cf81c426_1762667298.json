@@ -1,0 +1,87 @@
+{
+  "analysis_id": "analysis_cf81c426_1762667298",
+  "session_id": 66,
+  "timestamp": "2025-11-09T13:47:50.051652",
+  "processing_time": 28.165568,
+  "model_used": "qwen3-vl:235b-cloud",
+  "image_path": "results\\captured_image_1762604704416_56_66_annotated.jpg",
+  "detection_summary": {
+    "healthy_count": 2,
+    "unhealthy_count": 4,
+    "total_count": 6,
+    "health_percentage": 33.33333333333333
+  },
+  "ai_analysis": {
+    "analysis": {
+      "overall_assessment": "The image shows 6 tea leaves with 33.3% classified as healthy and 66.7% unhealthy, indicating significant quality degradation. Unhealthy leaves exhibit severe necrotic damage, holes, and discoloration, which compromise both aesthetic and functional quality for commercial tea production.",
+      "severity_level": "High",
+      "quality_grade": "Below standard"
+    },
+    "pollution_diagnosis": {
+      "symptoms_observed": "Black or necrotic spots",
+      "primary_pollution_source": [
+        "Ozone (O3) exposure"
+      ],
+      "pollution_reduction_solutions": [
+        "Install ozone-absorbing windbreaks (e.g., willow or poplar trees) around tea fields to reduce direct exposure",
+        "Apply kaolin-based foliar sprays to create a protective barrier on leaves, reducing ozone uptake",
+        "Monitor local air quality indices and schedule harvesting during low-ozone periods (e.g., early morning)"
+      ]
+    },
+    "processing_recommendations": {
+      "immediate_actions": [
+        "Isolate healthy leaves (0.57 and 0.8 confidence) immediately to prevent cross-contamination",
+        "Halt processing of unhealthy leaves until contamination source is identified",
+        "Conduct microbial testing on damaged leaves to rule out secondary infections"
+      ],
+      "sorting_strategy": "Manual sorting by visual inspection: separate leaves with >20% necrotic area or holes (unhealthy) from intact green leaves (healthy). Use UV light to detect hidden damage.",
+      "processing_method": "Process healthy leaves via orthodox method for premium markets; discard severely damaged leaves. Moderately damaged leaves (0.49 confidence) may undergo CTC processing for low-grade blends if no microbial contamination is found.",
+      "quality_preservation": [
+        "Store healthy leaves in climate-controlled environments (15°C, 75% humidity)",
+        "Use antioxidant-rich withering techniques to preserve polyphenols",
+        "Avoid mechanical bruising during rolling to maintain leaf integrity"
+      ]
+    },
+    "waste_prevention": {
+      "salvageable_portions": "Healthy leaves (33.3%) and marginally damaged leaves with <15% necrosis (e.g., 0.49 confidence leaf if tested safe)",
+      "alternative_uses": [
+        "Unhealthy leaves with minor damage: compost for organic fertilizer",
+        "Severely damaged leaves: biochar production for soil remediation",
+        "Leaf fragments: natural pesticide ingredient (e.g., neem-based mixtures)"
+      ],
+      "composting_guidelines": "Shred damaged leaves, mix with 3:1 ratio of brown materials (sawdust, straw), and maintain 55-65°C for 14 days to eliminate pathogens. Add lime to neutralize acidity from necrotic tissue.",
+      "prevention_measures": [
+        "Implement real-time ozone monitoring systems in tea fields",
+        "Rotate planting with ozone-tolerant cover crops (e.g., clover)",
+        "Establish buffer zones with pollution-absorbing vegetation"
+      ]
+    },
+    "economic_impact": {
+      "estimated_loss_percentage": "66.7%",
+      "cost_saving_opportunities": [
+        "Redirect 33.3% healthy leaves to premium markets to offset losses",
+        "Convert damaged leaves into value-added compost for in-house use",
+        "Partner with local biochar producers for waste-to-energy revenue"
+      ],
+      "value_recovery_methods": [
+        "Sell composted material to organic farms",
+        "Use leaf fragments for tea-based skincare product prototypes",
+        "Apply for agricultural disaster relief funds for pollution-affected crops"
+      ]
+    },
+    "recommendations": {
+      "priority_actions": [
+        "Immediate manual sorting of healthy leaves within 24 hours to prevent quality deterioration",
+        "Deploy ozone-absorbing windbreaks within 2 weeks to protect remaining crop",
+        "Initiate composting program for damaged leaves to recover soil nutrients"
+      ],
+      "timeline": "Critical actions (sorting, composting) within 72 hours; pollution barriers within 14 days; long-term monitoring over 6 months",
+      "monitoring_points": [
+        "Daily ozone concentration levels near tea fields",
+        "Weekly leaf health assessments using spectral imaging",
+        "Monthly soil pH and nutrient analysis post-composting"
+      ]
+    }
+  },
+  "status": "completed"
+}

@@ -1,0 +1,477 @@
+{% extends "base.html" %}
+
+{% block title %}Tea Leaf Scan - Farm view{% endblock %}
+
+{% block extra_css %}
+<style>
+.dashboard-hero {
+    background: linear-gradient(135deg, #0f766e 0%, #16a34a 100%);
+    color: #fff;
+    border-radius: 18px;
+    padding: 1.25rem;
+}
+
+.period-switcher {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+}
+
+.period-switcher .btn {
+    border-color: rgba(255, 255, 255, 0.45);
+    color: #fff;
+}
+
+.period-switcher .btn:hover,
+.period-switcher .btn:focus,
+.period-switcher .btn.active {
+    background: #fff;
+    color: #0f766e;
+    border-color: #fff;
+}
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+}
+
+.kpi-card {
+    border-radius: 14px;
+    padding: 0.85rem;
+    background: #fff;
+    border: 1px solid rgba(6, 95, 70, 0.15);
+}
+
+.kpi-title {
+    font-size: 0.8rem;
+    margin: 0;
+    color: #4b5563;
+}
+
+.kpi-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0.2rem 0 0;
+}
+
+.section-title {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.canvas-wrap {
+    position: relative;
+    height: 260px;
+}
+
+.meta-chip {
+    display: inline-block;
+    background: #e6fffa;
+    color: #0f766e;
+    font-size: 0.78rem;
+    border-radius: 999px;
+    padding: 0.2rem 0.6rem;
+    margin-right: 0.4rem;
+}
+
+.simple-list {
+    margin: 0;
+    padding-left: 1rem;
+}
+
+.simple-list li {
+    margin-bottom: 0.4rem;
+}
+
+.data-box {
+    background: #0f172a;
+    color: #d1fae5;
+    border-radius: 12px;
+    padding: 0.9rem;
+    font-size: 0.78rem;
+    overflow-x: auto;
+}
+
+@media (max-width: 576px) {
+    .canvas-wrap { height: 220px; }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row g-3">
+    <div class="col-12">
+        <div class="dashboard-hero">
+            <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+                <div>
+                    <h1 class="h4 mb-1"><i class="fas fa-seedling me-2"></i>Farm view</h1>
+                    <p class="mb-0">Quick view of leaf quality, waste, and money impact.</p>
+                </div>
+                <div class="text-end">
+                    <div class="period-switcher mb-2" role="group" aria-label="Farm view period filter">
+                        <button type="button" class="btn btn-sm btn-outline-light active" data-period="7">7 days</button>
+                        <button type="button" class="btn btn-sm btn-outline-light" data-period="30">30 days</button>
+                        <button type="button" class="btn btn-sm btn-outline-light" data-period="365">1 year</button>
+                        <button type="button" class="btn btn-sm btn-outline-light" data-period="all">All time</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <p class="kpi-title"><i class="fas fa-leaf text-success me-1"></i>Healthy Leaves</p>
+                <p class="kpi-value text-success" id="healthyPct">82.4%</p>
+            </div>
+            <div class="kpi-card">
+                <p class="kpi-title"><i class="fas fa-triangle-exclamation text-danger me-1"></i>Unhealthy Leaves</p>
+                <p class="kpi-value text-danger" id="unhealthyPct">17.6%</p>
+            </div>
+            <div class="kpi-card">
+                <p class="kpi-title"><i class="fas fa-recycle text-primary me-1"></i>Waste Reduced</p>
+                <p class="kpi-value text-primary" id="wasteReduced">145.2 kg</p>
+            </div>
+            <div class="kpi-card">
+                <p class="kpi-title"><i class="fas fa-coins text-warning me-1"></i>Money Saved</p>
+                <p class="kpi-value text-warning" id="moneySaved">MYR 1,240.50</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-7">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="section-title mb-3">Quality Trends Over Time</h2>
+                <div class="canvas-wrap"><canvas id="qualityTrendChart"></canvas></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-5">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="section-title mb-3">Healthy vs Unhealthy</h2>
+                <div class="canvas-wrap"><canvas id="healthSplitChart"></canvas></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="section-title mb-3">Waste Reduction Metrics</h2>
+                <div class="canvas-wrap"><canvas id="wasteChart"></canvas></div>
+                <p class="mt-2 mb-0 text-muted">12% less waste than last month.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="section-title mb-3">Economic Impact (Money Saved)</h2>
+                <div class="canvas-wrap"><canvas id="moneyChart"></canvas></div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const dashboardData = { 
+    farm_id: "live",
+    period: "7",
+    all_sessions: [],
+    summary: {
+        healthy_pct: 0,
+        unhealthy_pct: 0,
+        waste_reduced_kg: 0,
+        money_saved: 0,
+        currency: "USD"
+    },
+    quality_trends: [],
+    waste_metrics: [],
+    economic_impact: []
+};
+
+let qualityTrendChart = null;
+let healthSplitChart = null;
+let wasteChart = null;
+let moneyChart = null;
+
+function getPeriodLabel(period) {
+    if (period === "all") {
+        return "All time";
+    }
+
+    if (period === "365") {
+        return "Last 1 year";
+    }
+
+    return `Last ${period} days`;
+}
+
+function getPeriodCutoff(period) {
+    if (period === "all") {
+        return null;
+    }
+
+    const days = Number(period);
+    if (!Number.isFinite(days) || days <= 0) {
+        return null;
+    }
+
+    const cutoff = new Date();
+    cutoff.setDate(cutoff.getDate() - days);
+    return cutoff;
+}
+
+function formatCurrency(value) {
+    return `${dashboardData.summary.currency} ${Number(value || 0).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+}
+
+function updateKPIText() {
+    document.getElementById("healthyPct").textContent = `${dashboardData.summary.healthy_pct.toFixed(1)}%`;
+    document.getElementById("unhealthyPct").textContent = `${dashboardData.summary.unhealthy_pct.toFixed(1)}%`;
+    document.getElementById("wasteReduced").textContent = `${dashboardData.summary.waste_reduced_kg.toFixed(1)} kg`;
+    document.getElementById("moneySaved").textContent = formatCurrency(dashboardData.summary.money_saved);
+}
+
+function renderCharts() {
+    if (qualityTrendChart) qualityTrendChart.destroy();
+    if (healthSplitChart) healthSplitChart.destroy();
+    if (wasteChart) wasteChart.destroy();
+    if (moneyChart) moneyChart.destroy();
+
+    const labels = dashboardData.quality_trends.map(x => x.date);
+
+    qualityTrendChart = new Chart(document.getElementById("qualityTrendChart"), {
+        type: "line",
+        data: {
+            labels,
+            datasets: [
+                {
+                    label: "Healthy %",
+                    data: dashboardData.quality_trends.map(x => x.healthy_pct),
+                    borderColor: "#16a34a",
+                    backgroundColor: "rgba(22, 163, 74, 0.12)",
+                    tension: 0.3,
+                    fill: false
+                },
+                {
+                    label: "Unhealthy %",
+                    data: dashboardData.quality_trends.map(x => x.unhealthy_pct),
+                    borderColor: "#dc2626",
+                    backgroundColor: "rgba(220, 38, 38, 0.12)",
+                    tension: 0.3,
+                    fill: false
+                }
+            ]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+    });
+
+    healthSplitChart = new Chart(document.getElementById("healthSplitChart"), {
+        type: "doughnut",
+        data: {
+            labels: ["Healthy", "Unhealthy"],
+            datasets: [{
+                data: [dashboardData.summary.healthy_pct, dashboardData.summary.unhealthy_pct],
+                backgroundColor: ["#16a34a", "#dc2626"]
+            }]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+    });
+
+    wasteChart = new Chart(document.getElementById("wasteChart"), {
+        type: "bar",
+        data: {
+            labels: dashboardData.waste_metrics.map(x => x.date),
+            datasets: [
+                { label: "Current Waste (kg)", data: dashboardData.waste_metrics.map(x => x.waste_kg), backgroundColor: "#0ea5e9" },
+                { label: "Baseline Waste (kg)", data: dashboardData.waste_metrics.map(x => x.baseline_waste_kg), backgroundColor: "#94a3b8" }
+            ]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+    });
+
+    moneyChart = new Chart(document.getElementById("moneyChart"), {
+        type: "line",
+        data: {
+            labels: dashboardData.economic_impact.map(x => x.date),
+            datasets: [{
+                label: "Saved Amount",
+                data: dashboardData.economic_impact.map(x => x.saved_amount),
+                borderColor: "#ca8a04",
+                backgroundColor: "rgba(202, 138, 4, 0.22)",
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    ticks: {
+                        callback: (value) => `${dashboardData.summary.currency} ${value}`
+                    }
+                }
+            }
+        }
+    });
+}
+
+function formatSessionLabel(session) {
+    const dt = new Date(session.created_at);
+    if (Number.isNaN(dt.getTime())) {
+        return `Session ${session.id}`;
+    }
+    return dt.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+}
+
+async function fetchJson(url) {
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`Failed ${url}: ${response.status}`);
+    }
+    return response.json();
+}
+
+async function fetchAllSessions() {
+    const sessions = [];
+    const pageSize = 100;
+    let skip = 0;
+
+    while (true) {
+        const batch = await fetchJson(`/api/sessions?skip=${skip}&limit=${pageSize}`);
+        if (!Array.isArray(batch) || batch.length === 0) {
+            break;
+        }
+
+        sessions.push(...batch);
+
+        if (batch.length < pageSize) {
+            break;
+        }
+
+        skip += pageSize;
+    }
+
+    return sessions;
+}
+
+function applyPeriodFilter(period) {
+    dashboardData.period = period;
+
+    const cutoff = getPeriodCutoff(period);
+    const sessions = dashboardData.all_sessions
+        .filter(session => session.status === "completed")
+        .filter(session => {
+            if (!cutoff) {
+                return true;
+            }
+
+            const createdAt = new Date(session.created_at);
+            return !Number.isNaN(createdAt.getTime()) && createdAt >= cutoff;
+        })
+        .sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+
+    if (sessions.length === 0) {
+        dashboardData.quality_trends = [];
+        dashboardData.waste_metrics = [];
+        dashboardData.economic_impact = [];
+        dashboardData.summary.healthy_pct = 0;
+        dashboardData.summary.unhealthy_pct = 0;
+        dashboardData.summary.waste_reduced_kg = 0;
+        dashboardData.summary.money_saved = 0;
+        return;
+    }
+
+    dashboardData.quality_trends = sessions.map(session => {
+        const healthyPct = Number(session.average_health_percentage || 0);
+        return {
+            date: formatSessionLabel(session),
+            healthy_pct: healthyPct,
+            unhealthy_pct: Math.max(0, 100 - healthyPct),
+            total_scanned: Number(session.processed_images || 0)
+        };
+    });
+
+    let totalHealthy = 0;
+    let totalUnhealthy = 0;
+    let totalWasteReduced = 0;
+    let totalMoneySaved = 0;
+    let currency = "USD";
+
+    dashboardData.waste_metrics = sessions.map(session => ({
+        date: formatSessionLabel(session),
+        waste_kg: Number(session.total_unhealthy || 0),
+        baseline_waste_kg: Number(session.total_healthy || 0) + Number(session.total_unhealthy || 0)
+    }));
+
+    dashboardData.economic_impact = sessions.map(session => {
+        const healthy = Number(session.total_healthy || 0);
+        const unhealthy = Number(session.total_unhealthy || 0);
+        totalHealthy += healthy;
+        totalUnhealthy += unhealthy;
+        totalWasteReduced += unhealthy;
+        const moneySaved = Math.max(0, healthy - unhealthy) * 0.25;
+        totalMoneySaved += moneySaved;
+        return {
+            date: formatSessionLabel(session),
+            saved_amount: moneySaved
+        };
+    });
+
+    const totalLeaves = totalHealthy + totalUnhealthy;
+    const healthyPct = totalLeaves > 0 ? (totalHealthy / totalLeaves) * 100 : 0;
+    const unhealthyPct = Math.max(0, 100 - healthyPct);
+
+    dashboardData.summary.healthy_pct = healthyPct;
+    dashboardData.summary.unhealthy_pct = unhealthyPct;
+    dashboardData.summary.waste_reduced_kg = totalWasteReduced;
+    dashboardData.summary.money_saved = totalMoneySaved;
+    dashboardData.summary.currency = currency;
+}
+
+async function loadDashboardData() {
+    dashboardData.all_sessions = await fetchAllSessions();
+    if (!Array.isArray(dashboardData.all_sessions) || dashboardData.all_sessions.length === 0) {
+        return;
+    }
+
+    applyPeriodFilter(dashboardData.period);
+}
+
+async function initDashboard() {
+    try {
+        await loadDashboardData();
+        updateKPIText();
+        renderCharts();
+        document.querySelectorAll(".period-switcher [data-period]").forEach(button => {
+            button.addEventListener("click", () => {
+                document.querySelectorAll(".period-switcher [data-period]").forEach(item => item.classList.remove("active"));
+                button.classList.add("active");
+                applyPeriodFilter(button.dataset.period);
+                updateKPIText();
+                renderCharts();
+            });
+        });
+    } catch (error) {
+        console.error("Dashboard load error:", error);
+        updateKPIText();
+        renderCharts();
+    }
+}
+
+document.addEventListener("DOMContentLoaded", initDashboard);
+</script>
+{% endblock %}

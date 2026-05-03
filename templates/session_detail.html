@@ -1,0 +1,1838 @@
+{% extends "base.html" %} 
+
+{% block title %}Tea Leaf Scan - Batch result{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- Add Tailwind CSS CDN for UI design -->
+    <script src="https://cdn.tailwindcss.com"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+	.decision-support-panel {
+		border: 1px solid rgba(16, 185, 129, 0.14);
+		background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(245, 158, 11, 0.05));
+	}
+
+	.decision-pill {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.55rem;
+		padding: 0.75rem 1rem;
+		border-radius: 999px;
+		color: #fff;
+		font-weight: 700;
+		letter-spacing: 0.01em;
+		box-shadow: 0 10px 20px rgba(15, 23, 42, 0.12);
+		white-space: nowrap;
+	}
+
+	.decision-pill.sell { background: linear-gradient(135deg, #059669, #10b981); }
+	.decision-pill.process { background: linear-gradient(135deg, #d97706, #f59e0b); }
+	.decision-pill.discard { background: linear-gradient(135deg, #b91c1c, #ef4444); }
+
+	.decision-card {
+		height: 100%;
+		border-radius: 18px;
+		background: rgba(255, 255, 255, 0.88);
+		border: 1px solid rgba(16, 185, 129, 0.12);
+		box-shadow: 0 12px 24px rgba(15, 23, 42, 0.05);
+		padding: 1rem 1.1rem;
+	}
+
+	.decision-metric-label {
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: #6b7280;
+		margin-bottom: 0.35rem;
+	}
+
+	.decision-metric-value {
+		font-size: 1.45rem;
+		font-weight: 800;
+		color: #111827;
+		margin-bottom: 0.15rem;
+	}
+
+	.decision-metric-note {
+		font-size: 0.88rem;
+		color: #4b5563;
+		margin-bottom: 0;
+	}
+
+	.decision-allocation-bar {
+		display: flex;
+		width: 100%;
+		height: 12px;
+		border-radius: 999px;
+		overflow: hidden;
+		background: #e5e7eb;
+	}
+
+	.decision-allocation-bar .sell { background: #10b981; }
+	.decision-allocation-bar .process { background: #f59e0b; }
+	.decision-allocation-bar .discard { background: #ef4444; }
+
+	.decision-list {
+		margin: 0;
+		padding-left: 1.1rem;
+	}
+
+	.decision-list li {
+		margin-bottom: 0.65rem;
+		color: #374151;
+	}
+
+	.decision-note {
+		font-size: 0.9rem;
+		color: #6b7280;
+	}
+
+	.dashboard-panel {
+		border: 1px solid rgba(59, 130, 246, 0.12);
+		background: linear-gradient(135deg, rgba(15, 23, 42, 0.03), rgba(16, 185, 129, 0.05));
+	}
+
+	.dashboard-action-badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.8rem 1rem;
+		border-radius: 999px;
+		background: linear-gradient(135deg, #0f766e, #10b981);
+		color: #fff;
+		font-weight: 700;
+		box-shadow: 0 10px 24px rgba(15, 23, 42, 0.14);
+	}
+
+	.dashboard-empty-state {
+		padding: 1rem 1.2rem;
+		border-radius: 16px;
+		border: 1px dashed rgba(59, 130, 246, 0.25);
+		background: rgba(255, 255, 255, 0.82);
+		color: #4b5563;
+	}
+
+	.dashboard-summary-card {
+		height: 100%;
+		border-radius: 18px;
+		background: rgba(255, 255, 255, 0.92);
+		border: 1px solid rgba(59, 130, 246, 0.08);
+		box-shadow: 0 12px 24px rgba(15, 23, 42, 0.05);
+		padding: 1rem 1.1rem;
+	}
+
+	.dashboard-summary-label {
+		font-size: 0.78rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: #6b7280;
+		margin-bottom: 0.35rem;
+	}
+
+	.dashboard-summary-value {
+		font-size: 1.5rem;
+		font-weight: 800;
+		color: #111827;
+		margin-bottom: 0.2rem;
+	}
+
+	.dashboard-summary-note {
+		font-size: 0.88rem;
+		color: #4b5563;
+		margin-bottom: 0;
+	}
+
+	.dashboard-chart-card {
+		height: 100%;
+		border-radius: 20px;
+		background: rgba(255, 255, 255, 0.95);
+		border: 1px solid rgba(59, 130, 246, 0.08);
+		box-shadow: 0 12px 24px rgba(15, 23, 42, 0.05);
+		padding: 1rem 1.1rem;
+	}
+
+	.dashboard-chart-title {
+		font-size: 1.02rem;
+		font-weight: 800;
+		color: #111827;
+		margin-bottom: 0.25rem;
+	}
+
+	.dashboard-chart-subtitle {
+		font-size: 0.9rem;
+		color: #6b7280;
+		margin-bottom: 0;
+	}
+
+	.dashboard-chart-shell {
+		position: relative;
+		height: 300px;
+	}
+
+	.dashboard-chart-shell.compact {
+		height: 250px;
+	}
+
+	.dashboard-metric-line {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 1rem;
+	}
+
+	.dashboard-metric-pill {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		padding: 0.3rem 0.7rem;
+		border-radius: 999px;
+		font-size: 0.82rem;
+		font-weight: 700;
+	}
+
+	.dashboard-metric-pill.good {
+		background: rgba(16, 185, 129, 0.12);
+		color: #059669;
+	}
+
+	.dashboard-metric-pill.warn {
+		background: rgba(245, 158, 11, 0.12);
+		color: #d97706;
+	}
+
+	.dashboard-metric-pill.bad {
+		background: rgba(239, 68, 68, 0.12);
+		color: #dc2626;
+	}
+</style>
+{% endblock %}
+
+{% block content %} 
+<div class="container p-4 p-md-8"> 
+    <!-- Add hidden session ID element -->
+    <div id="session-id" data-session-id="{{ session.id }}" style="display: none;"></div>
+    
+	<div class="session-header-sticky">
+        <div class="container px-4">
+            <div class="d-flex justify-content-between align-items-start">
+            <div>
+                <h1 class="text-3xl-custom font-bold-custom text-gray-900 mb-2 tracking-tight d-flex align-items-center">
+                    <div class="icon-bg-gradient">
+                        <i class="fas fa-info-circle text-white text-xs-custom"></i>
+                    </div>
+					Batch result
+                </h1>
+                <p class="text-gray-600-custom mt-1" style="word-break: break-word;">Session: {{ session.name }}</p>
+            </div>
+            
+            <div class="flex-shrink-0 d-flex align-items-center gap-2">
+				<button class="btn-back-history" onclick="window.location.href='/history-page'">
+                    <i class="fas fa-history text-xs-custom"></i>
+					<span>Back to past scans</span>
+                </button>
+                <button class="btn btn-outline-primary ms-2" onclick="downloadReport('pdf', {{ session.id }})">
+                    <i class="fas fa-file-pdf"></i> PDF
+                </button>
+                <button class="btn btn-outline-success ms-2" onclick="downloadReport('csv', {{ session.id }})">
+                    <i class="fas fa-file-csv"></i> CSV
+                </button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+ 	<div class="d-flex flex-column gap-8"> 
+ 		<!-- Session Overview - Full Width -->
+ 		<div class="row g-4"> 
+ 			<div class="col-12"> 
+ 				<div class="card-custom"> 
+ 					<h2 class="text-xl-custom font-bold-custom mb-4 pb-3 border-bottom text-gray-700-custom">Session Overview</h2> 
+ 					<div class="row g-4"> 
+ 						<div class="col-12 col-md-3"> 
+ 							<h3 class="font-semibold-custom text-lg-custom text-green-700-custom mb-3">Information</h3> 
+ 							<div class="d-flex flex-column gap-3 text-sm-custom"> 
+ 								<p><strong>Status:</strong>  
+ 									<span class="status-badge {% if session.status == 'completed' %}completed{% elif session.status == 'processing' %}processing{% elif session.status == 'failed' %}failed{% else %}default{% endif %}"> 
+ 										{{ session.status }} 
+ 									</span> 
+ 								</p> 
+ 								<p><strong>Created:</strong> <span class="text-gray-600-custom">{{ session.created_at }}</span></p> 
+ 								<p><strong>Images:</strong> <span class="text-gray-600-custom">{{ session.processed_images }}/{{ session.total_images }}</span></p> 
+ 								<p><strong>Completed:</strong> <span class="text-green-600-custom font-semibold-custom">{{ completed_count }}</span></p> 
+ 								<p><strong>Failed:</strong> <span class="text-red-600-custom font-semibold-custom">{{ failed_count }}</span></p> 
+ 							</div> 
+ 						</div> 
+ 						<div class="col-12 col-md-3"> 
+ 							<h3 class="font-semibold-custom text-lg-custom text-green-700-custom mb-3">Detection Results</h3> 
+ 							<div class="d-flex flex-column gap-3 text-sm-custom"> 
+ 								<p><strong>Total Leaves:</strong> <span class="text-gray-600-custom font-bold-custom">{{ total_leaves }}</span></p> 
+ 								<p><strong>Healthy:</strong> <span class="text-green-600-custom font-semibold-custom">{{ total_healthy }}</span></p> 
+ 								<p><strong>Unhealthy:</strong> <span class="text-red-600-custom font-semibold-custom">{{ total_unhealthy }}</span></p> 
+ 								
+ 								<!-- Pollution Diagnosis Summary (populated by JavaScript after analysis) -->
+								<div id="pollution-diagnosis-summary" style="display: none;">
+									<div class="mb-2">
+										<p><strong>Symptoms Observed:</strong></p>
+										<div id="symptoms-observed-list" class="text-gray-600-custom text-xs-custom ml-2"></div>
+									</div>
+									<div>
+										<p><strong>Primary Pollution Source:</strong></p>
+										<div id="primary-pollution-source" class="text-red-600-custom font-semibold-custom text-xs-custom ml-2"></div>
+									</div>
+								</div>
+ 							</div> 
+ 						</div> 
+ 						<div class="col-12 col-md-6">
+ 							<h3 class="font-semibold-custom text-lg-custom text-green-700-custom mb-3">Health Score</h3>
+ 							{% set health_score = (average_health|default(0)|float) %} 
+ 							{% if health_score > 100 %}{% set health_score = 100 %}{% endif %} 
+ 							{% if health_score < 0 %}{% set health_score = 0 %}{% endif %} 
+ 							 
+ 							<div> 
+ 								<p class="mb-1"><strong>Overall Health:</strong>  
+ 									<span class="font-bold-custom text-lg-custom {% if health_score >= 70 %}health-score-green{% elif health_score >= 50 %}health-score-yellow{% else %}health-score-red{% endif %}"> 
+ 										{{ health_score|round(1) }}% 
+									</span> 
+ 								</p> 
+ 								<div class="progress-bar-container"> 
+ 									<div class="progress-bar-fill {% if health_score >= 70 %}bg-green-500{% elif health_score >= 50 %}bg-yellow-500{% else %}bg-red-500{% endif %}"  
+ 										 style="width: {{ health_score }}%"> 
+ 									</div> 
+ 								</div> 
+ 							</div> 
+ 						</div>
+ 					</div> 
+ 				</div> 
+ 			</div>
+ 		</div>
+
+		<!-- Decision Support - batch action summary -->
+		<div class="row g-4">
+			<div class="col-12">
+				<div class="card-custom decision-support-panel">
+					<div class="d-flex justify-content-between align-items-start gap-3 flex-wrap mb-3">
+						<div>
+							<h2 class="text-2xl-custom font-bold-custom text-gray-800-custom d-flex align-items-center mb-1">
+								<i class="fas fa-route text-green-600-custom me-2"></i>
+								Farmer Decision Support
+							</h2>
+							<p class="text-gray-600-custom mb-0">Convert this scan into a batch action: sell, process, or discard, with an estimate of value at risk.</p>
+						</div>
+						<div id="decision-support-pill" class="decision-pill sell" style="display: none;"></div>
+					</div>
+
+					<div id="decision-support-banner" class="alert alert-info mb-4">
+						Loading decision support for this batch...
+					</div>
+
+					<div id="decision-support-content" style="display: none;">
+						<p id="decision-support-reason" class="text-gray-700-custom mb-4"></p>
+
+						<div class="row g-3 mb-4">
+							<div class="col-12 col-md-3">
+								<div class="decision-card">
+									<div class="decision-metric-label">Health score</div>
+									<div class="decision-metric-value" id="decision-health-value">-</div>
+									<p class="decision-metric-note">Healthy leaves in the detected batch</p>
+								</div>
+							</div>
+							<div class="col-12 col-md-3">
+								<div class="decision-card">
+									<div class="decision-metric-label">Quality grade</div>
+									<div class="decision-metric-value" id="decision-grade-value">-</div>
+									<p class="decision-metric-note">Premium, standard, below standard, or reject</p>
+								</div>
+							</div>
+							<div class="col-12 col-md-3">
+								<div class="decision-card">
+									<div class="decision-metric-label">Recoverable value</div>
+									<div class="decision-metric-value" id="decision-recoverable-value">-</div>
+									<p class="decision-metric-note">Estimated value the batch can still preserve</p>
+								</div>
+							</div>
+							<div class="col-12 col-md-3">
+								<div class="decision-card">
+									<div class="decision-metric-label">Value at risk</div>
+									<div class="decision-metric-value" id="decision-loss-value">-</div>
+									<p class="decision-metric-note">Estimated value lost if the batch is mishandled</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="mb-4">
+							<div class="d-flex justify-content-between align-items-center mb-2">
+								<span class="fw-semibold text-gray-700-custom">Suggested routing</span>
+								<span class="text-muted small" id="decision-allocation-text"></span>
+							</div>
+							<div class="decision-allocation-bar mb-2">
+								<div id="decision-allocation-sell" class="sell" style="width: 0%;"></div>
+								<div id="decision-allocation-process" class="process" style="width: 0%;"></div>
+								<div id="decision-allocation-discard" class="discard" style="width: 0%;"></div>
+							</div>
+						</div>
+
+						<div class="row g-3">
+							<div class="col-12 col-lg-6">
+								<div class="decision-card">
+									<h3 class="h5 fw-bold text-gray-800-custom mb-3">Immediate actions</h3>
+									<ul id="decision-immediate-list" class="decision-list"></ul>
+								</div>
+							</div>
+							<div class="col-12 col-lg-6">
+								<div class="decision-card">
+									<h3 class="h5 fw-bold text-gray-800-custom mb-3">Value recovery routes</h3>
+									<ul id="decision-recovery-list" class="decision-list"></ul>
+								</div>
+							</div>
+						</div>
+
+						<p id="decision-support-note" class="decision-note mt-3 mb-0"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Annotated Images - Tile/Grid Layout -->
+		<div class="row g-4">
+			<div class="col-12"> 
+				<div class="card-custom"> 
+					<div class="card-header-gradient"> 
+						<div class="d-flex justify-content-between align-items-center">
+							<h2 class="text-2xl-custom font-bold-custom text-gray-800-custom d-flex align-items-center mb-0">
+								<div class="icon-bg-gradient-blue">
+									<i class="fas fa-images text-white text-sm-custom"></i>
+								</div>
+								Annotated Images ({{ session.results|length }})
+							</h2>
+							<div class="view-toggle-buttons">
+								<button id="grid-view-btn" class="btn-view-toggle active" onclick="switchView('grid')">
+									<i class="fas fa-th"></i> Grid
+								</button>
+								<button id="list-view-btn" class="btn-view-toggle" onclick="switchView('list')">
+									<i class="fas fa-list"></i> List
+								</button>
+							</div>
+						</div>
+					</div> 
+					<div class="p-4"> 
+						<!-- Grid View: 3 per row -->
+						<div id="grid-view" class="images-grid-container" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; margin-top: 1.5rem;">
+							{% for result in session.results %} 
+							<div class="image-tile-card"> 
+								<div class="image-tile-container" onclick="enlargeImageWithDetails('{{ result.image_name }}', '{{ result.image_name }}', {{ result.healthy_count }}, {{ result.unhealthy_count }}, {{ result.total_count }}, {{ result.health_percentage|default(0)|round(1) }}, '{{ result.status }}', '{{ result.annotated_image or '' }}')">
+									{% if result.annotated_image %}
+										<img src="data:image/jpeg;base64,{{ result.annotated_image }}" 
+											alt="Annotated image" 
+											class="image-tile-img"
+										> 
+									{% else %}
+										<img src="/static/images/placeholder.png" 
+											alt="Annotated image" 
+											class="image-tile-img" 
+											data-image-name="{{ result.image_name }}"
+											data-session-id="{{ session.id }}"
+											onload="if(this.src.includes('placeholder.png')) { this.src = findImagePath(this.dataset.imageName, this.dataset.sessionId); }"
+											onerror="handleImageError(this);" 
+										> 
+									{% endif %}
+									<div class="image-tile-overlay"> 
+										<div class="image-overlay-icon-bg">
+											<i class="fas fa-search-plus text-white text-xl-custom"></i> 
+										</div>
+									</div>
+									<!-- Hover Details Panel -->
+									<div class="image-tile-hover-details">
+										<div class="hover-details-content">
+											<div class="hover-status-badge status-badge {% if result.status == 'completed' %}completed{% elif result.status == 'processing' %}processing{% elif result.status == 'failed' %}failed{% else %}default{% endif %}">
+												{% if result.status == 'completed' %}
+													<i class="fas fa-check-circle me-1"></i>
+												{% elif result.status == 'processing' %}
+													<i class="fas fa-spinner fa-spin me-1"></i>
+												{% elif result.status == 'failed' %}
+													<i class="fas fa-exclamation-circle me-1"></i>
+												{% endif %}
+												{{ result.status }}
+											</div>
+											<div class="hover-health-score">
+												<span class="health-score-hover {% if result.health_percentage|default(0) >= 70 %}health-score-green{% elif result.health_percentage|default(0) >= 50 %}health-score-yellow{% else %}health-score-red{% endif %}">
+													{{ result.health_percentage|default(0)|round(1) }}%
+												</span>
+												<span class="hover-health-label">Health Score</span>
+											</div>
+											<div class="hover-stats-mini">
+												<div class="mini-stat green">
+													<span>{{ result.healthy_count }}</span>
+													<small>Healthy</small>
+												</div>
+												<div class="mini-stat red">
+													<span>{{ result.unhealthy_count }}</span>
+													<small>Unhealthy</small>
+												</div>
+												<div class="mini-stat gray">
+													<span>{{ result.total_count }}</span>
+													<small>Total</small>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div> 
+								<div class="image-tile-info"> 
+									<div class="tile-image-name">
+										<span class="image-name-text">{{ result.image_name }}</span>
+									</div>
+									<div class="tile-quick-stats">
+										<div class="quick-stat-item">
+											<img src="/static/images/logo.svg" alt="Healthy Leaf" style="height:1.5rem;vertical-align:middle;">
+											<span>{{ result.healthy_count }}/{{ result.total_count }}</span>
+										</div>
+										<div class="quick-stat-item">
+											<i class="fas fa-clock text-gray-400"></i>
+											<span>{{ result.processing_time|round(2) }}s</span>
+										</div>
+									</div>
+								</div> 
+							</div> 
+							{% endfor %}
+						</div>
+
+						<!-- List View -->
+						<div id="list-view" class="images-list-container" style="display: none;">
+							{% for result in session.results %} 
+							<div class="image-list-item"> 
+								<div class="image-list-thumbnail" onclick="enlargeImageWithDetails('{{ result.image_name }}', '{{ result.image_name }}', {{ result.healthy_count }}, {{ result.unhealthy_count }}, {{ result.total_count }}, {{ result.health_percentage|default(0)|round(1) }}, '{{ result.status }}', '{{ result.annotated_image or '' }}')">
+									{% if result.annotated_image %}
+										<img src="data:image/jpeg;base64,{{ result.annotated_image }}" 
+											alt="Annotated image" 
+											class="list-thumbnail-img"
+										> 
+									{% else %}
+										<img src="/static/images/placeholder.png" 
+											alt="Annotated image" 
+											class="list-thumbnail-img" 
+											data-image-name="{{ result.image_name }}"
+											data-session-id="{{ session.id }}"
+											onload="if(this.src.includes('placeholder.png')) { this.src = findImagePath(this.dataset.imageName, this.dataset.sessionId); }"
+											onerror="handleImageError(this);" 
+										> 
+									{% endif %}
+									<div class="list-thumbnail-overlay"> 
+										<i class="fas fa-search-plus text-white"></i> 
+									</div> 
+								</div> 
+								<div class="image-list-details"> 
+									<div class="list-header">
+										<div class="list-title-section">
+											<h5 class="list-image-title">{{ result.image_name }}</h5>
+											<span class="status-badge {% if result.status == 'completed' %}completed{% elif result.status == 'processing' %}processing{% elif result.status == 'failed' %}failed{% else %}default{% endif %}"> 
+												{% if result.status == 'completed' %}
+													<i class="fas fa-check-circle me-1"></i>
+												{% elif result.status == 'processing' %}
+													<i class="fas fa-spinner fa-spin me-1"></i>
+												{% elif result.status == 'failed' %}
+													<i class="fas fa-exclamation-circle me-1"></i>
+												{% endif %}
+												{{ result.status }} 
+											</span>
+										</div>
+										<div class="list-health-section">
+											<span class="health-score-large {% if result.health_percentage|default(0) >= 70 %}health-score-green{% elif result.health_percentage|default(0) >= 50 %}health-score-yellow{% else %}health-score-red{% endif %}"> 
+												{{ result.health_percentage|default(0)|round(1) }}% 
+											</span>
+											<p class="health-label">Health Score</p>
+										</div>
+									</div>
+									
+									<div class="list-stats-grid"> 
+										<div class="list-stat-box green"> 
+											<div class="stat-icon">
+												<img src="/static/images/logo.svg" alt="Healthy Leaf" style="height:1.2rem;">
+											</div>
+											<div class="stat-content">
+												<span class="stat-value">{{ result.healthy_count }}</span> 
+												<span class="stat-label">Healthy</span> 
+											</div>
+										</div> 
+										<div class="list-stat-box red"> 
+											<div class="stat-icon">
+												<i class="fas fa-exclamation-triangle"></i>
+											</div>
+											<div class="stat-content">
+												<span class="stat-value">{{ result.unhealthy_count }}</span> 
+												<span class="stat-label">Unhealthy</span> 
+											</div>
+										</div> 
+										<div class="list-stat-box gray"> 
+											<div class="stat-icon">
+												<i class="fas fa-layer-group"></i>
+											</div>
+											<div class="stat-content">
+												<span class="stat-value">{{ result.total_count }}</span> 
+												<span class="stat-label">Total</span> 
+											</div>
+										</div> 
+										<div class="list-stat-box blue">
+											<div class="stat-icon">
+												<i class="fas fa-stopwatch"></i>
+											</div>
+											<div class="stat-content">
+												<span class="stat-value">{{ result.processing_time|round(2) }}s</span>
+												<span class="stat-label">Processing</span>
+											</div>
+										</div>
+									</div> 
+								</div> 
+							</div> 
+							{% endfor %}
+						</div>
+
+						{% if session.results|length == 0 %} 
+						<div class="text-center py-5"> 
+							<div class="card-custom p-4 border-dashed border-2 border-gray-200">
+								<div class="ai-analysis-placeholder-icon-bg">
+									<i class="fas fa-image ai-analysis-placeholder-icon"></i>
+								</div>
+								<h3 class="text-lg-custom font-medium-custom text-gray-800-custom mb-2">No Images Found</h3>
+								<p class="text-gray-500-custom">No annotated images are available for this session yet.</p>
+							</div>
+						</div> 
+						{% endif %} 
+					</div> 
+				</div> 
+			</div>
+		</div>
+
+ 		<div class="card-custom"> 
+ 			<div class="p-4 border-bottom"> 
+ 				<h2 class="text-xl-custom font-bold-custom text-gray-700-custom d-flex align-items-center"> 
+ 					<i class="fas fa-microscope text-green-600-custom me-3"></i> AI Analysis 
+ 				</h2> 
+ 			</div> 
+ 			<div class="p-4"> 
+ 				<div id="ai-analysis-content" style="display: none;"> 
+ 					<!-- Analysis Summary Section -->
+					<div class="row g-4 mb-5">
+						<div class="col-12">
+							<div class="card-custom">
+								<h3 class="font-semibold-custom text-lg-custom text-green-700-custom mb-3 d-flex align-items-center">
+									<i class="fas fa-chart-line me-2"></i>Analysis Summary
+								</h3>
+								<p class="text-gray-600-custom" id="analysis-summary"></p>
+							</div>
+						</div>
+					</div>
+
+					<!-- Overall Assessment Section -->
+					<div class="row g-4 mb-5" id="overall-assessment-section" style="display: none;">
+						<div class="col-12">
+							<div class="card-custom">
+								<h3 class="font-semibold-custom text-lg-custom text-green-700-custom mb-3 d-flex align-items-center">
+									<i class="fas fa-clipboard-check me-2"></i>Overall Assessment
+								</h3>
+								<div id="overall-assessment-content"></div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Pollution Diagnosis Section -->
+					<div class="row g-4 mb-5" id="pollution-diagnosis-section" style="display: none;">
+						<div class="col-12">
+							<div class="card-custom">
+								<h3 class="font-semibold-custom text-lg-custom text-red-600-custom mb-3 d-flex align-items-center">
+									<i class="fas fa-exclamation-triangle me-2"></i>Pollution Diagnosis
+								</h3>
+								<div id="pollution-diagnosis-content"></div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Processing Recommendations Section -->
+					<div class="row g-4 mb-5" id="processing-recommendations-section" style="display: none;">
+						<div class="col-12">
+							<div class="card-custom">
+								<h3 class="font-semibold-custom text-lg-custom text-green-700-custom mb-3 d-flex align-items-center">
+									<i class="fas fa-cogs me-2"></i>Processing Recommendations
+								</h3>
+								<div id="processing-recommendations-content"></div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Waste Prevention Section -->
+					<div class="row g-4 mb-5" id="waste-prevention-section" style="display: none;">
+						<div class="col-12">
+							<div class="card-custom">
+								<h3 class="font-semibold-custom text-lg-custom text-green-700-custom mb-3 d-flex align-items-center">
+									<i class="fas fa-recycle me-2"></i>Waste Prevention
+								</h3>
+								<div id="waste-prevention-content"></div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Economic Impact Section -->
+					<div class="row g-4 mb-5" id="economic-impact-section" style="display: none;">
+						<div class="col-12">
+							<div class="card-custom">
+								<h3 class="font-semibold-custom text-lg-custom text-green-700-custom mb-3 d-flex align-items-center">
+									<i class="fas fa-dollar-sign me-2"></i>Economic Impact
+								</h3>
+								<div id="economic-impact-content"></div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Priority Recommendations Section -->
+					<div class="row g-4 mb-5" id="priority-recommendations-section" style="display: none;">
+						<div class="col-12">
+							<div class="card-custom">
+								<h3 class="font-semibold-custom text-lg-custom text-green-700-custom mb-3 d-flex align-items-center">
+									<i class="fas fa-star me-2"></i>Priority Recommendations
+								</h3>
+								<ul class="ai-analysis-recommendations-list" id="priority-recommendations-list"></ul>
+							</div>
+						</div>
+					</div>
+
+					<!-- Batch Processing Strategy Section (for batch analysis) -->
+					<div class="row g-4 mb-5" id="batch-strategy-section" style="display: none;">
+						<div class="col-12">
+							<div class="card-custom">
+								<h3 class="font-semibold-custom text-lg-custom text-green-700-custom mb-3 d-flex align-items-center">
+									<i class="fas fa-layer-group me-2"></i>Batch Processing Strategy
+								</h3>
+								<div id="batch-strategy-content"></div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Monitoring Recommendations Section (for batch analysis) -->
+					<div class="row g-4 mb-5" id="monitoring-section" style="display: none;">
+						<div class="col-12">
+							<div class="card-custom">
+								<h3 class="font-semibold-custom text-lg-custom text-green-700-custom mb-3 d-flex align-items-center">
+									<i class="fas fa-eye me-2"></i>Monitoring Recommendations
+								</h3>
+								<div id="monitoring-content"></div>
+							</div>
+						</div>
+					</div>
+				</div> 
+				<div id="ai-analysis-placeholder" class="text-center py-5"> 
+					<div class="mb-4"> 
+						<img src="/static/images/logo.svg" alt="Healthy Leaf" style="height:3rem;">
+					</div>
+					<p class="font-semibold-custom text-gray-700-custom mb-2">Analysis Not Started</p> 
+					<p class="text-gray-500-custom text-sm-custom mb-4">Generate detailed insights and recommendations for this session.</p> 
+					<button class="btn btn-primary"  
+							onclick="analyzeSession(this.getAttribute('data-session-id'))"  
+							data-session-id="{{ session.id }}"> 
+						<i class="fas fa-rocket me-2"></i> Start Analysis 
+					</button> 
+				</div> 
+ 			</div> 
+ 		</div> 
+ 	</div> 
+ </div> 
+ {% endblock %} 
+
+ {% block extra_js %} 
+ <script> 
+ // NOTE: The JavaScript logic is mostly unchanged, but the 'displayAnalysisData' function 
+ // has been updated to use the new Tailwind CSS classes for styling the dynamic content. 
+
+ // Function to format date for display 
+ function formatDate(dateString) { 
+ 	if (!dateString) return 'N/A'; 
+ 	try { 
+ 		const date = new Date(dateString); 
+ 		return date.toLocaleString(); 
+ 	} catch (e) { 
+ 		console.error('Date formatting error:', e); 
+ 		return 'Invalid Date'; 
+ 	} 
+ } 
+
+ // Function to get status badge class (no longer needed for JS, handled by Jinja) 
+ function getStatusClass(status) { 
+ 	if (!status) return 'bg-gray-100 text-gray-800'; 
+ 	const classes = { 
+ 		'completed': 'bg-green-100 text-green-800', 
+ 		'processing': 'bg-yellow-100 text-yellow-800', 
+ 		'failed': 'bg-red-100 text-red-800', 
+ 		'pending': 'bg-gray-100 text-gray-800' 
+ 	}; 
+ 	return classes[status.toLowerCase()] || 'bg-gray-100 text-gray-800'; 
+ } 
+
+const dashboardCharts = {
+	qualityTrend: null,
+	healthSplit: null,
+	wasteReduction: null,
+	economicImpact: null
+};
+
+function destroyDashboardCharts() {
+	Object.keys(dashboardCharts).forEach(key => {
+		if (dashboardCharts[key]) {
+			dashboardCharts[key].destroy();
+			dashboardCharts[key] = null;
+		}
+	});
+}
+
+function setDashboardPill(pillElement, text, toneClass) {
+	if (!pillElement) return;
+	pillElement.textContent = text;
+	pillElement.className = `dashboard-metric-pill ${toneClass}`;
+	pillElement.style.display = 'inline-flex';
+}
+
+function displayDashboardData(analyticsData) {
+	const dashboardData = analyticsData && analyticsData.dashboard ? analyticsData.dashboard : analyticsData;
+	const emptyState = document.getElementById('dashboard-empty-state');
+	const content = document.getElementById('dashboard-content');
+	const actionBadge = document.getElementById('dashboard-action-badge');
+	const healthyValue = document.getElementById('dashboard-healthy-value');
+	const unhealthyValue = document.getElementById('dashboard-unhealthy-value');
+	const wasteValue = document.getElementById('dashboard-waste-value');
+	const moneyValue = document.getElementById('dashboard-money-value');
+	const qualityPill = document.getElementById('dashboard-quality-pill');
+	const compositionPill = document.getElementById('dashboard-composition-pill');
+	const wastePill = document.getElementById('dashboard-waste-pill');
+	const economicPill = document.getElementById('dashboard-economic-pill');
+
+	if (!emptyState || !content || !healthyValue || !unhealthyValue || !wasteValue || !moneyValue) {
+		return;
+	}
+
+	if (!dashboardData) {
+		emptyState.textContent = 'No dashboard metrics are available for this session yet.';
+		content.style.display = 'none';
+		return;
+	}
+
+	const summary = dashboardData.summary || {};
+	const trend = dashboardData.quality_trend || [];
+	const composition = dashboardData.composition || {};
+	const economic = dashboardData.economic || {};
+	const waste = dashboardData.waste || {};
+	const decision = dashboardData.decision || {};
+	const currency = economic.currency || summary.currency || 'USD';
+	const healthyPercentage = Number(summary.healthy_percentage ?? composition.healthy_percentage ?? 0);
+	const unhealthyPercentage = Number(summary.unhealthy_percentage ?? composition.unhealthy_percentage ?? 0);
+	const healthyCount = Number(summary.healthy_count ?? composition.healthy_leaves ?? 0);
+	const unhealthyCount = Number(summary.unhealthy_count ?? composition.unhealthy_leaves ?? 0);
+	const wasteReducedKg = Number(summary.waste_reduced_kg ?? waste.waste_reduction_kg ?? 0);
+	const moneySaved = Number(summary.money_saved ?? economic.profit_improvement_per_batch ?? 0);
+	const profitBefore = Number(economic.profit_before_action ?? 0);
+	const profitAfter = Number(economic.profit_after_action ?? 0);
+	const wasteBefore = Number(waste.waste_before_kg ?? 0);
+	const wasteAfter = Number(waste.waste_after_kg ?? 0);
+	const totalScans = Number(summary.total_scans ?? trend.length ?? 0);
+	const actionLabel = summary.recommended_action || decision.action_label || 'Review batch';
+	const actionType = decision.action || 'sell';
+
+	emptyState.style.display = 'none';
+	content.style.display = 'block';
+
+	if (actionBadge) {
+		actionBadge.innerHTML = `<i class="fas fa-${actionType === 'process' ? 'cogs' : actionType === 'discard' ? 'trash-alt' : 'shopping-cart'}"></i>${actionLabel}`;
+		actionBadge.style.display = 'inline-flex';
+	}
+
+	healthyValue.textContent = `${healthyPercentage.toFixed(1)}%`;
+	unhealthyValue.textContent = `${unhealthyPercentage.toFixed(1)}%`;
+	wasteValue.textContent = `${wasteReducedKg.toFixed(2)} kg`;
+	moneyValue.textContent = formatCurrency(moneySaved, currency);
+
+	setDashboardPill(qualityPill, `${totalScans} scans`, 'good');
+	setDashboardPill(compositionPill, `${healthyCount} healthy / ${unhealthyCount} unhealthy`, 'warn');
+	setDashboardPill(wastePill, `${wasteReducedKg.toFixed(2)} kg recovered`, 'bad');
+	setDashboardPill(economicPill, `${formatCurrency(moneySaved, currency)} saved`, 'good');
+
+	destroyDashboardCharts();
+
+	if (typeof Chart === 'undefined') {
+		return;
+	}
+
+	const trendCanvas = document.getElementById('quality-trend-chart');
+	const splitCanvas = document.getElementById('health-split-chart');
+	const wasteCanvas = document.getElementById('waste-reduction-chart');
+	const economicCanvas = document.getElementById('economic-impact-chart');
+
+	const trendLabels = trend.length > 0 ? trend.map((point, index) => point.label || `Scan ${index + 1}`) : ['Current batch'];
+	const trendValues = trend.length > 0 ? trend.map(point => Number(point.health_percentage || 0)) : [healthyPercentage];
+	const splitHealthy = healthyCount > 0 || unhealthyCount > 0 ? healthyCount : healthyPercentage;
+	const splitUnhealthy = healthyCount > 0 || unhealthyCount > 0 ? unhealthyCount : unhealthyPercentage;
+
+	if (trendCanvas) {
+		dashboardCharts.qualityTrend = new Chart(trendCanvas, {
+			type: 'line',
+			data: {
+				labels: trendLabels,
+				datasets: [{
+					label: 'Health %',
+					data: trendValues,
+					borderColor: '#10b981',
+					backgroundColor: 'rgba(16, 185, 129, 0.12)',
+					fill: true,
+					tension: 0.35,
+					pointRadius: 4,
+					pointHoverRadius: 6,
+					pointBackgroundColor: '#059669',
+					pointBorderColor: '#ffffff',
+					pointBorderWidth: 2,
+				}]
+			},
+			options: {
+				responsive: true,
+				maintainAspectRatio: false,
+				plugins: {
+					legend: { display: false },
+					tooltip: {
+						callbacks: {
+							label: (context) => `${Number(context.parsed.y || 0).toFixed(1)}% health`
+						}
+					}
+				},
+				scales: {
+					y: {
+						beginAtZero: true,
+						max: 100,
+						ticks: {
+							callback: (value) => `${value}%`
+						}
+					},
+					x: {
+						grid: { display: false }
+					}
+				}
+			}
+		});
+	}
+
+	if (splitCanvas) {
+		dashboardCharts.healthSplit = new Chart(splitCanvas, {
+			type: 'doughnut',
+			data: {
+				labels: ['Healthy', 'Unhealthy'],
+				datasets: [{
+					data: [splitHealthy, splitUnhealthy],
+					backgroundColor: ['#10b981', '#ef4444'],
+					borderWidth: 0,
+					hoverOffset: 6
+				}]
+			},
+			options: {
+				responsive: true,
+				maintainAspectRatio: false,
+				cutout: '72%',
+				plugins: {
+					legend: {
+						position: 'bottom'
+					}
+				}
+			}
+		});
+	}
+
+	if (wasteCanvas) {
+		dashboardCharts.wasteReduction = new Chart(wasteCanvas, {
+			type: 'bar',
+			data: {
+				labels: ['Waste before', 'Waste after', 'Recovered'],
+				datasets: [{
+					data: [wasteBefore, wasteAfter, wasteReducedKg],
+					backgroundColor: ['#ef4444', '#f59e0b', '#10b981'],
+					borderRadius: 10,
+					borderSkipped: false
+				}]
+			},
+			options: {
+				indexAxis: 'y',
+				responsive: true,
+				maintainAspectRatio: false,
+				plugins: {
+					legend: { display: false },
+					tooltip: {
+						callbacks: {
+							label: (context) => `${Number(context.parsed.x || 0).toFixed(2)} kg`
+						}
+					}
+				},
+				scales: {
+					x: {
+						beginAtZero: true,
+						ticks: {
+							callback: (value) => `${value} kg`
+						}
+					},
+					y: {
+						grid: { display: false }
+					}
+				}
+			}
+		});
+	}
+
+	if (economicCanvas) {
+		dashboardCharts.economicImpact = new Chart(economicCanvas, {
+			type: 'bar',
+			data: {
+				labels: ['Profit before', 'Profit after', 'Money saved'],
+				datasets: [{
+					data: [profitBefore, profitAfter, moneySaved],
+					backgroundColor: ['#94a3b8', '#0f766e', '#10b981'],
+					borderRadius: 10,
+					borderSkipped: false
+				}]
+			},
+			options: {
+				responsive: true,
+				maintainAspectRatio: false,
+				plugins: {
+					legend: { display: false },
+					tooltip: {
+						callbacks: {
+							label: (context) => formatCurrency(context.parsed.y || 0, currency)
+						}
+					}
+				},
+				scales: {
+					y: {
+						beginAtZero: true,
+						ticks: {
+							callback: (value) => formatCurrency(value, currency)
+						}
+					},
+					x: {
+						grid: { display: false }
+					}
+				}
+			}
+		});
+	}
+}
+
+ // Function to start analysis for a session 
+ async function analyzeSession(sessionId) { 
+	const button = document.querySelector(`[data-session-id="${sessionId}"]`); 
+	if (!button) return; 
+	const originalText = button.innerHTML; 
+
+	// Add animation spinner to the placeholder section
+	const placeholder = document.getElementById('ai-analysis-placeholder');
+	if (placeholder) {
+		let anim = document.getElementById('ai-analysis-spinner');
+		if (!anim) {
+			const spinnerDiv = document.createElement('div');
+			spinnerDiv.id = 'ai-analysis-spinner';
+			spinnerDiv.style = 'margin: 2rem auto;';
+			spinnerDiv.innerHTML = `
+				<div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+					<div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+						<span class="visually-hidden">Analyzing...</span>
+					</div>
+					<div class="text-primary fw-bold" style="font-size: 1.1rem;">AI is analyzing your session...</div>
+				</div>
+			`;
+			placeholder.appendChild(spinnerDiv);
+		}
+	}
+
+	try { 
+		button.disabled = true; 
+		button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Analyzing...'; 
+		 
+		if (typeof showAlert !== 'undefined') { 
+			showAlert('Starting analysis...', 'info'); 
+		} 
+		 
+		const response = await fetch(`/api/analytics/analyze/batch/${sessionId}`, {  
+			method: 'POST', 
+			headers: { 'Content-Type': 'application/json' } 
+		}); 
+
+		const data = await response.json();
+		if (response.ok) { 
+			if (typeof showAlert !== 'undefined') { 
+				showAlert('Analysis started successfully! Refreshing page...', 'success'); 
+			} else { 
+				console.log('Analysis started successfully, but no alert function defined.'); 
+			} 
+			setTimeout(() => { window.location.reload(); }, 20000); 
+		} else { 
+			const error = await response.json().catch(() => ({ detail: 'Unknown error' })); 
+			if (typeof showAlert !== 'undefined') { 
+				showAlert(`Failed to start analysis: ${error.detail || 'Unknown error'}`, 'danger'); 
+			} 
+			button.disabled = false; 
+			button.innerHTML = originalText; 
+			// Remove spinner if error
+			const anim = document.getElementById('ai-analysis-spinner');
+			if (anim) anim.remove();
+		} 
+	} catch (e) { 
+		console.error('Analysis error:', e); 
+		if (typeof showAlert !== 'undefined') { 
+			showAlert(`Error starting analysis: ${e.message}`, 'danger'); 
+		} 
+		button.disabled = false; 
+		button.innerHTML = originalText; 
+		const anim = document.getElementById('ai-analysis-spinner');
+		if (anim) anim.remove();
+	} 
+ } 
+
+ // Function to load analysis data for the session
+ async function loadAnalysisData(sessionId) {
+    try {
+        const response = await fetch(`/api/analytics/session/${sessionId}`);
+        if (response.ok) {
+            const data = await response.json();
+			displayDashboardData(data);
+			if (data.decision_support) {
+				displayDecisionSupportData(data.decision_support);
+			}
+            let analysisDataDisplayed = false;
+
+            // Always try to display individual analysis first if only one exists
+            if (data.individual_analyses && data.individual_analyses.length === 1) {
+                const analysisId = data.individual_analyses[0].analysis_id;
+                const analysisResponse = await fetch(`/api/analytics/results/${analysisId}`);
+                if (analysisResponse.ok) {
+                    const analysisData = await analysisResponse.json();
+                    displayAnalysisData(analysisData);
+                    analysisDataDisplayed = true;
+                } else if (analysisResponse.status === 404) {
+                    console.warn('Individual analysis not found (404). Showing Start Analysis button.');
+                    showStartAnalysisButton();
+                    return;
+                } else {
+                    console.error('Failed to fetch individual analysis details:', analysisResponse.status, analysisResponse.statusText);
+                }
+            }
+
+            // If there is a batch_analysis and more than one result, use batch API
+            if (!analysisDataDisplayed && data.batch_analysis && data.batch_analysis.batch_analysis_id && (data.individual_analyses && data.individual_analyses.length > 1)) {
+                const batchResponse = await fetch(`/api/analytics/batch/${data.batch_analysis.batch_analysis_id}`);
+                if (batchResponse.ok) {
+                    const batchData = await batchResponse.json();
+                    displayAnalysisData(batchData);
+                    analysisDataDisplayed = true;
+                } else if (batchResponse.status === 404) {
+                    console.warn('Batch analysis not found (404). Showing Start Analysis button.');
+                    showStartAnalysisButton();
+                    return;
+                } else {
+                    console.error('Failed to fetch batch analysis details using batch_analysis_id:', batchResponse.status, batchResponse.statusText);
+                }
+            }
+
+            // Fallback: try batch API with session ID
+            if (!analysisDataDisplayed && data.batch_analysis && data.batch_analysis.batch_analysis_id) {
+                const fallbackBatchResponse = await fetch(`/api/analytics/batch/${sessionId}`);
+                if (fallbackBatchResponse.ok) {
+                    const fallbackBatchData = await fallbackBatchResponse.json();
+                    displayAnalysisData(fallbackBatchData);
+                    analysisDataDisplayed = true;
+                } else if (fallbackBatchResponse.status === 404) {
+                    console.warn('Batch analysis not found (404) using session ID fallback. Showing Start Analysis button.');
+                    showStartAnalysisButton();
+                    return;
+                } else {
+                    console.error('Failed to fetch batch analysis details using session ID fallback:', fallbackBatchResponse.status, fallbackBatchResponse.statusText);
+                }
+            }
+
+            // If no data was displayed after all attempts, show Start Analysis button
+            if (!analysisDataDisplayed) {
+                console.log('No analysis data available for this session via API. Showing Start Analysis button.');
+                showStartAnalysisButton();
+            }
+        } else {
+            console.error('Failed to fetch session analytics:', response.status, response.statusText);
+            showStartAnalysisButton();
+        }
+    } catch (e) {
+        console.error('Error loading analysis data:', e);
+        showStartAnalysisButton();
+    }
+ }
+
+ // Function to show the Start Analysis button
+ function showStartAnalysisButton() {
+ 	const placeholder = document.getElementById('ai-analysis-placeholder');
+ 	const content = document.getElementById('ai-analysis-content');
+ 	if (placeholder && content) {
+ 		placeholder.style.display = 'block';
+ 		content.style.display = 'none';
+ 	}
+ }
+
+ // Function to display error messages based on context
+ function displayErrorMessage(context) {
+ 	const placeholder = document.getElementById('ai-analysis-placeholder');
+ 	const content = document.getElementById('ai-analysis-content');
+ 	if (placeholder && content) {
+ 		placeholder.style.display = 'none';
+ 		content.style.display = 'block';
+ 		if (context === 'batch') {
+ 			document.getElementById('analysis-summary').textContent = 'Batch Analysis Not Found';
+ 			document.getElementById('analysis-details').innerHTML = '<p class="text-gray-500 italic">The batch analysis data could not be found. It may not have been saved or completed yet.</p>';
+ 			document.getElementById('analysis-recommendations').innerHTML = '<p class="text-gray-500 italic">No recommendations available due to missing analysis data.</p>';
+ 		} else if (context === 'individual') {
+ 			document.getElementById('analysis-summary').textContent = 'Individual Analysis Not Found';
+ 			document.getElementById('analysis-details').innerHTML = '<p class="text-gray-500 italic">The individual analysis data could not be found. It may not have been saved or completed yet.</p>';
+ 			document.getElementById('analysis-recommendations').innerHTML = '<p class="text-gray-500 italic">No recommendations available due to missing analysis data.</p>';
+ 		} else if (context === 'session') {
+ 			document.getElementById('analysis-summary').textContent = 'Error Loading Analysis Data';
+ 			document.getElementById('analysis-details').innerHTML = '<p class="text-gray-500 italic">There was an error loading the analysis data for this session.</p>';
+ 			document.getElementById('analysis-recommendations').innerHTML = '<p class="text-gray-500 italic">No recommendations available due to error in loading data.</p>';
+ 		} else {
+ 			document.getElementById('analysis-summary').textContent = 'Error Loading Analysis Data';
+ 			document.getElementById('analysis-details').innerHTML = '<p class="text-gray-500 italic">There was an unexpected error loading the analysis data for this session.</p>';
+ 			document.getElementById('analysis-recommendations').innerHTML = '<p class="text-gray-500 italic">No recommendations available due to error in loading data.</p>';
+ 		}
+ 	}
+ }
+
+function displayAnalysisData(analysisData) { 
+	const placeholder = document.getElementById('ai-analysis-placeholder'); 
+	const content = document.getElementById('ai-analysis-content'); 
+	const summaryEl = document.getElementById('analysis-summary'); 
+	
+	if (!content || !summaryEl) { 
+		console.error('UI elements for analysis display not found'); 
+		return; 
+	} 
+	
+	// Log the received data for debugging
+	console.log('Analysis Data Received by displayAnalysisData:', analysisData);
+	
+	// Always hide the placeholder and show the content if data is received
+	placeholder.style.display = 'none';
+	content.style.display = 'block';
+
+	// Function to render JSON data as styled HTML 
+	function renderSectionContent(obj, containerId) {
+		const container = document.getElementById(containerId);
+		if (!container) return;
+		
+		container.innerHTML = '';
+		
+		if (!obj || typeof obj !== 'object') {
+			const textEl = document.createElement('p');
+			textEl.textContent = obj !== null && obj !== undefined ? obj.toString() : 'N/A';
+			textEl.className = 'text-gray-600-custom';
+			container.appendChild(textEl);
+			return;
+		}
+		
+		if (Array.isArray(obj)) {
+			if (obj.length === 0) {
+				const emptyEl = document.createElement('p');
+				emptyEl.textContent = '(No data available)';
+				emptyEl.className = 'text-gray-500-custom italic';
+				container.appendChild(emptyEl);
+				return;
+			}
+			const ul = document.createElement('ul');
+			ul.className = 'list-disc list-inside';
+			obj.forEach(item => {
+				const li = document.createElement('li');
+				li.className = 'text-gray-600-custom mb-2';
+				li.textContent = item !== null && item !== undefined ? item.toString() : 'N/A';
+				ul.appendChild(li);
+			});
+			container.appendChild(ul);
+		} else {
+			for (const [key, value] of Object.entries(obj)) {
+				const keyEl = document.createElement('h6');
+				keyEl.className = 'font-semibold-custom text-gray-700-custom mt-3 mb-2';
+				keyEl.textContent = key.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
+				container.appendChild(keyEl);
+				
+				if (typeof value === 'object' && value !== null) {
+					if (Array.isArray(value)) {
+						const ul = document.createElement('ul');
+						ul.className = 'list-disc list-inside pl-4';
+						value.forEach(item => {
+							const li = document.createElement('li');
+							li.className = 'text-gray-600-custom mb-1';
+							li.textContent = item !== null && item !== undefined ? item.toString() : 'N/A';
+							ul.appendChild(li);
+						});
+						container.appendChild(ul);
+					} else {
+						const subContainer = document.createElement('div');
+						subContainer.className = 'pl-4 mb-3';
+						for (const [subKey, subValue] of Object.entries(value)) {
+							const subKeyEl = document.createElement('p');
+							subKeyEl.className = 'font-medium-custom text-gray-700-custom mb-1';
+							subKeyEl.textContent = subKey.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase()) + ':';
+							subContainer.appendChild(subKeyEl);
+							
+							const subValueEl = document.createElement('p');
+							subValueEl.className = 'text-gray-600-custom mb-2 pl-4';
+							subValueEl.textContent = subValue !== null && subValue !== undefined ? subValue.toString() : 'N/A';
+							subContainer.appendChild(subValueEl);
+						}
+						container.appendChild(subContainer);
+					}
+				} else {
+					const valueEl = document.createElement('p');
+					valueEl.className = 'text-gray-600-custom mb-3 pl-4';
+					valueEl.textContent = value !== null && value !== undefined ? value.toString() : 'N/A';
+					container.appendChild(valueEl);
+				}
+			}
+		}
+	}
+
+	// Function to show/hide sections based on available data
+	function showSection(sectionId, hasData) {
+		const section = document.getElementById(sectionId);
+		if (section) {
+			section.style.display = hasData ? 'block' : 'none';
+		}
+	}
+
+	// Function to populate priority recommendations
+	function populateRecommendations(recommendations, listId) {
+		const list = document.getElementById(listId);
+		if (!list) return;
+		
+		list.innerHTML = '';
+		if (!recommendations || recommendations.length === 0) {
+			list.innerHTML = '<p class="text-gray-500-custom italic">No recommendations available.</p>';
+			return;
+		}
+
+		recommendations.forEach(rec => {
+			const recItem = document.createElement('li');
+			recItem.className = 'flex items-start p-2 rounded-md hover:bg-green-50';
+			recItem.innerHTML = `<i class="fas fa-check-circle text-green-500 me-3 mt-1"></i><span class="text-gray-700">${rec}</span>`;
+			list.appendChild(recItem);
+		});
+	}
+
+	// Function to populate pollution diagnosis summary in Detection Results section
+	function populatePollutionDiagnosisSummary(pollutionDiagnosis, unhealthyCount = 0) {
+		const summarySection = document.getElementById('pollution-diagnosis-summary');
+		const symptomsContainer = document.getElementById('symptoms-observed-list');
+		const pollutionSourceContainer = document.getElementById('primary-pollution-source');
+		
+		if (!summarySection || !symptomsContainer || !pollutionSourceContainer) return;
+		
+		// If no unhealthy leaves detected, hide the pollution diagnosis summary
+		if (unhealthyCount === 0) {
+			summarySection.style.display = 'none';
+			return;
+		}
+		
+		// Show the summary section
+		summarySection.style.display = 'block';
+		
+		// Populate symptoms observed
+		if (pollutionDiagnosis.symptoms_observed) {
+			let symptomsList = [];
+			
+			// Handle both string and array formats
+			if (Array.isArray(pollutionDiagnosis.symptoms_observed)) {
+				symptomsList = pollutionDiagnosis.symptoms_observed
+					.slice(0, 3) // Show max 3 symptoms to keep it concise
+					.map(symptom => `• ${symptom}`);
+			} else if (typeof pollutionDiagnosis.symptoms_observed === 'string') {
+				// Handle single string symptom
+				symptomsList = [`• ${pollutionDiagnosis.symptoms_observed}`];
+			}
+			
+			if (symptomsList.length > 0) {
+				symptomsContainer.innerHTML = symptomsList.join('<br>');
+				
+				// Add "and more..." if there are more than 3 symptoms (for array case)
+				if (Array.isArray(pollutionDiagnosis.symptoms_observed) && pollutionDiagnosis.symptoms_observed.length > 3) {
+					symptomsContainer.innerHTML += '<br>• and more...';
+				}
+			} else {
+				symptomsContainer.innerHTML = 'No symptoms identified';
+			}
+		} else {
+			symptomsContainer.innerHTML = 'No symptoms identified';
+		}
+		
+		// Populate primary pollution source
+		if (pollutionDiagnosis.primary_pollution_source) {
+			pollutionSourceContainer.innerHTML = pollutionDiagnosis.primary_pollution_source;
+		} else {
+			pollutionSourceContainer.innerHTML = 'Not determined';
+		}
+	}
+
+	if (analysisData) {
+		const id = analysisData.batch_analysis_id || analysisData.analysis_id || 'N/A';
+		const type = analysisData.batch_analysis_id ? 'Batch Analysis' : (analysisData.analysis_id ? 'Analysis' : 'Generic Analysis');
+		
+		summaryEl.textContent = `${type} (ID: ${id}) - Status: ${analysisData.status || 'Unknown'}`;
+
+		// Handle AI Analysis data (individual analysis)
+		if (analysisData.ai_analysis && typeof analysisData.ai_analysis === 'object') {
+			const ai = analysisData.ai_analysis;
+			
+			// Overall Assessment
+			if (ai.analysis) {
+				showSection('overall-assessment-section', true);
+				renderSectionContent(ai.analysis, 'overall-assessment-content');
+			}
+			
+			// Pollution Diagnosis
+			if (ai.pollution_diagnosis) {
+				// Check if there are any unhealthy leaves before showing pollution diagnosis
+				const detectionSummary = analysisData.detection_summary || {};
+				const unhealthyCount = detectionSummary.unhealthy_count || 0;
+				
+				// Only show pollution diagnosis if there are unhealthy leaves
+				if (unhealthyCount > 0) {
+					showSection('pollution-diagnosis-section', true);
+					renderSectionContent(ai.pollution_diagnosis, 'pollution-diagnosis-content');
+					
+					// Also populate the summary in Detection Results section
+					populatePollutionDiagnosisSummary(ai.pollution_diagnosis, unhealthyCount);
+				}
+			}
+			
+			// Processing Recommendations
+			if (ai.processing_recommendations) {
+				showSection('processing-recommendations-section', true);
+				renderSectionContent(ai.processing_recommendations, 'processing-recommendations-content');
+			}
+			
+			// Waste Prevention
+			if (ai.waste_prevention) {
+				showSection('waste-prevention-section', true);
+				renderSectionContent(ai.waste_prevention, 'waste-prevention-content');
+			}
+			
+			// Economic Impact
+			if (ai.economic_impact) {
+				showSection('economic-impact-section', true);
+				renderSectionContent(ai.economic_impact, 'economic-impact-content');
+			}
+			
+			// Priority Recommendations
+			if (ai.recommendations && ai.recommendations.priority_actions) {
+				showSection('priority-recommendations-section', true);
+				populateRecommendations(ai.recommendations.priority_actions, 'priority-recommendations-list');
+			}
+		}
+
+		// Handle Aggregate Recommendations (batch analysis)
+		if (analysisData.aggregate_recommendations && typeof analysisData.aggregate_recommendations === 'object') {
+			const agg = analysisData.aggregate_recommendations;
+			
+			// Overall Assessment
+			if (agg.overall_assessment) {
+				showSection('overall-assessment-section', true);
+				renderSectionContent(agg.overall_assessment, 'overall-assessment-content');
+			}
+			
+			// Pollution Diagnosis (if available in batch analysis)
+			if (agg.pollution_diagnosis) {
+				// Check if there are any unhealthy leaves before showing pollution diagnosis
+				const detectionSummary = analysisData.detection_summary || {};
+				const unhealthyCount = detectionSummary.unhealthy_count || 0;
+				
+				// Only show pollution diagnosis if there are unhealthy leaves
+				if (unhealthyCount > 0) {
+					showSection('pollution-diagnosis-section', true);
+					renderSectionContent(agg.pollution_diagnosis, 'pollution-diagnosis-content');
+					
+					// Also populate the summary in Detection Results section
+					populatePollutionDiagnosisSummary(agg.pollution_diagnosis, unhealthyCount);
+				}
+			}
+			
+			// Batch Processing Strategy
+			if (agg.batch_processing_strategy) {
+				showSection('batch-strategy-section', true);
+				renderSectionContent(agg.batch_processing_strategy, 'batch-strategy-content');
+			}
+			
+			// Waste Minimization
+			if (agg.waste_minimization) {
+				showSection('waste-prevention-section', true);
+				renderSectionContent(agg.waste_minimization, 'waste-prevention-content');
+			}
+			
+			// Monitoring Recommendations
+			if (agg.monitoring_recommendations) {
+				showSection('monitoring-section', true);
+				renderSectionContent(agg.monitoring_recommendations, 'monitoring-content');
+			}
+		}
+	} else {
+		console.log('Analysis data is invalid or missing:', analysisData);
+		summaryEl.textContent = 'Analysis Data Unavailable';
+	}
+}
+
+function displayDecisionSupportData(decisionSupport) {
+	const banner = document.getElementById('decision-support-banner');
+	const content = document.getElementById('decision-support-content');
+	const pill = document.getElementById('decision-support-pill');
+	const reason = document.getElementById('decision-support-reason');
+	const healthValue = document.getElementById('decision-health-value');
+	const gradeValue = document.getElementById('decision-grade-value');
+	const recoverableValue = document.getElementById('decision-recoverable-value');
+	const lossValue = document.getElementById('decision-loss-value');
+	const allocationText = document.getElementById('decision-allocation-text');
+	const allocationSell = document.getElementById('decision-allocation-sell');
+	const allocationProcess = document.getElementById('decision-allocation-process');
+	const allocationDiscard = document.getElementById('decision-allocation-discard');
+	const immediateList = document.getElementById('decision-immediate-list');
+	const recoveryList = document.getElementById('decision-recovery-list');
+	const note = document.getElementById('decision-support-note');
+
+	if (!banner || !content || !pill || !reason || !healthValue || !gradeValue || !recoverableValue || !lossValue || !allocationText || !allocationSell || !allocationProcess || !allocationDiscard || !immediateList || !recoveryList || !note) {
+		return;
+	}
+
+	if (!decisionSupport || decisionSupport.status === 'insufficient_data') {
+		banner.className = 'alert alert-warning mb-4';
+		banner.textContent = 'Decision support is waiting for more completed scans. Finish a batch to get sell, process, and discard guidance.';
+		content.style.display = 'none';
+		pill.style.display = 'none';
+		return;
+	}
+
+	const summary = decisionSupport.summary || {};
+	const decision = decisionSupport.batch_decision || {};
+	const economic = decisionSupport.economic_impact || {};
+	const valueRecovery = decisionSupport.value_recovery || {};
+	const actions = decisionSupport.actions || {};
+	const assumptions = decisionSupport.assumptions || {};
+	const allocation = decision.allocation || { sell: 0, process: 0, discard: 0 };
+	const currency = economic.currency || assumptions.currency || 'USD';
+	const action = decision.action || 'sell';
+
+	banner.className = decisionSupport.status === 'partial' ? 'alert alert-info mb-4' : 'alert alert-success mb-4';
+	banner.textContent = decisionSupport.status === 'partial'
+		? `Guidance is based on ${summary.completion_rate || 0}% of the batch that has finished processing.`
+		: 'Guidance is ready for this batch.';
+	content.style.display = 'block';
+	pill.style.display = 'inline-flex';
+	pill.className = `decision-pill ${action}`;
+	pill.innerHTML = `<i class="fas fa-${action === 'sell' ? 'shopping-cart' : action === 'process' ? 'cogs' : 'trash-alt'}"></i>${decision.action_label || action}`;
+
+	reason.textContent = decision.reason || 'Decision support is ready.';
+	healthValue.textContent = `${Number(summary.health_percentage || 0).toFixed(1)}%`;
+	gradeValue.textContent = String(summary.quality_grade || 'N/A').replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
+	recoverableValue.textContent = formatCurrency(economic.estimated_recoverable_value || 0, currency);
+	lossValue.textContent = formatCurrency(economic.estimated_value_at_risk || 0, currency);
+	allocationText.textContent = `Sell ${allocation.sell || 0}% · Process ${allocation.process || 0}% · Discard ${allocation.discard || 0}%`;
+	allocationSell.style.width = `${allocation.sell || 0}%`;
+	allocationProcess.style.width = `${allocation.process || 0}%`;
+	allocationDiscard.style.width = `${allocation.discard || 0}%`;
+
+	function populateList(listElement, items, emptyText) {
+		listElement.innerHTML = '';
+		if (!items || items.length === 0) {
+			const emptyItem = document.createElement('li');
+			emptyItem.className = 'text-gray-500-custom';
+			emptyItem.textContent = emptyText;
+			listElement.appendChild(emptyItem);
+			return;
+		}
+
+		items.forEach(item => {
+			const li = document.createElement('li');
+			if (typeof item === 'string') {
+				li.textContent = item;
+			} else {
+				const title = item.title || item.route || 'Recommendation';
+				const description = item.description || item.reason || '';
+				li.innerHTML = `<strong>${title}</strong>${description ? ` - ${description}` : ''}`;
+			}
+			listElement.appendChild(li);
+		});
+	}
+
+	populateList(immediateList, actions.immediate, 'No immediate actions available.');
+	populateList(recoveryList, valueRecovery.routes, 'No recovery routes available.');
+	note.textContent = economic.estimate_mode === 'sample_based'
+		? `Sample-based estimate. ${assumptions.calibration_note || ''}`
+		: `Estimate based on provided lot inputs. ${assumptions.calibration_note || ''}`;
+	const profitImprovement = Number(economic.profit_improvement_per_batch || 0);
+	if (profitImprovement > 0) {
+		note.textContent += ` Estimated profit uplift: ${formatCurrency(profitImprovement, currency)}.`;
+	}
+}
+
+function formatCurrency(amount, currency) {
+	const numericAmount = Number(amount || 0);
+	const resolvedCurrency = (currency || 'USD').toUpperCase();
+
+	try {
+		return new Intl.NumberFormat('en-US', {
+			style: 'currency',
+			currency: resolvedCurrency,
+			maximumFractionDigits: 2
+		}).format(numericAmount);
+	} catch (error) {
+		return `${resolvedCurrency} ${numericAmount.toFixed(2)}`;
+	}
+}
+
+// Enhanced function to enlarge image with detection details
+function enlargeImageWithDetails(src, title, healthy, unhealthy, total, healthScore, status, base64Image) {
+	// Create modal container
+	var modal = document.createElement('div');
+	modal.className = 'image-modal-container';
+	
+	// Create modal content
+	var modalContent = document.createElement('div');
+	modalContent.className = 'image-modal-content';
+	
+	// Create close button
+	var closeBtn = document.createElement('button');
+	closeBtn.className = 'image-modal-close';
+	closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+	closeBtn.onclick = function() {
+		document.body.removeChild(modal);
+	};
+	
+	// Create image section
+	var imageSection = document.createElement('div');
+	imageSection.className = 'modal-image-section';
+	
+	var img = document.createElement('img');
+	img.alt = 'Enlarged Image';
+	img.className = 'modal-image';
+	
+	// Use base64 image if available, otherwise fall back to file path
+	if (base64Image && base64Image.trim() !== '') {
+		img.src = 'data:image/jpeg;base64,' + base64Image;
+	} else if (!src.startsWith('/') && !src.startsWith('http') && !src.startsWith('data:')) {
+		// If src is just an image name, extract session ID from the page
+		const sessionElement = document.getElementById('session-id');
+		const sessionId = sessionElement ? sessionElement.dataset.sessionId : null;
+		if (sessionId) {
+			img.src = findImagePath(src, sessionId);
+			img.dataset.imageName = src;
+			img.dataset.sessionId = sessionId;
+		} else {
+			img.src = src;
+		}
+	} else {
+		img.src = src;
+	}
+	
+	img.onerror = function() {
+		if (this.dataset.imageName && this.dataset.sessionId) {
+			handleImageError(this);
+		} else {
+			// Fallback for cases where we don't have the dataset
+			this.onerror = null;
+			this.src = src.replace('_annotated.jpg', '_annotated.png');
+			this.onerror = function() {
+				this.onerror = null;
+				this.src = src.replace('_annotated.jpg', '_annotated.webp');
+				this.onerror = function() {
+					this.onerror = null;
+					this.src = src.replace('_annotated.jpg', '.jpg');
+					this.onerror = function() {
+						this.src = '/static/images/placeholder.png';
+						this.alt = 'Image not available';
+					};
+				};
+			};
+		}
+	};
+	
+	imageSection.appendChild(img);
+	
+	// Create details section
+	var detailsSection = document.createElement('div');
+	detailsSection.className = 'modal-details-section';
+	
+	// Status and health score classes
+	var statusClass = '';
+	var healthScoreClass = '';
+	
+	if (status === 'completed') statusClass = 'completed';
+	else if (status === 'processing') statusClass = 'processing';
+	else if (status === 'failed') statusClass = 'failed';
+	else statusClass = 'default';
+	
+	if (healthScore >= 70) healthScoreClass = 'health-score-green';
+	else if (healthScore >= 50) healthScoreClass = 'health-score-yellow';
+	else healthScoreClass = 'health-score-red';
+	
+	detailsSection.innerHTML = `
+		<div class="modal-details-header">
+			<h3 class="modal-image-title">${title}</h3>
+			<span class="status-badge ${statusClass}">
+				${status === 'completed' ? '<i class="fas fa-check-circle me-1"></i>' : 
+				  status === 'processing' ? '<i class="fas fa-spinner fa-spin me-1"></i>' : 
+				  status === 'failed' ? '<i class="fas fa-exclamation-circle me-1"></i>' : ''}
+				${status}
+			</span>
+		</div>
+		
+		<div class="modal-health-section">
+			<div class="modal-health-score">
+				<span class="health-score-huge ${healthScoreClass}">${healthScore}%</span>
+				<span class="health-score-label">Overall Health Score</span>
+			</div>
+		</div>
+		
+		<div class="modal-stats-section">
+			<h4 class="modal-stats-title">Detection Results</h4>
+			<div class="modal-stats-grid">
+				<div class="modal-stat-card green">
+					<div class="modal-stat-icon">
+						<img src="/static/images/logo.svg" alt="Healthy Leaf" style="height:1.2rem;">
+					</div>
+					<div class="modal-stat-content">
+						<span class="modal-stat-number">${healthy}</span>
+						<span class="modal-stat-label">Healthy Leaves</span>
+						<span class="modal-stat-percentage">${total > 0 ? Math.round((healthy/total)*100) : 0}%</span>
+					</div>
+				</div>
+				
+				<div class="modal-stat-card red">
+					<div class="modal-stat-icon">
+						<i class="fas fa-exclamation-triangle"></i>
+					</div>
+					<div class="modal-stat-content">
+						<span class="modal-stat-number">${unhealthy}</span>
+						<span class="modal-stat-label">Unhealthy Leaves</span>
+						<span class="modal-stat-percentage">${total > 0 ? Math.round((unhealthy/total)*100) : 0}%</span>
+					</div>
+				</div>
+				
+				<div class="modal-stat-card gray">
+					<div class="modal-stat-icon">
+						<i class="fas fa-layer-group"></i>
+					</div>
+					<div class="modal-stat-content">
+						<span class="modal-stat-number">${total}</span>
+						<span class="modal-stat-label">Total Detected</span>
+						<span class="modal-stat-percentage">100%</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	`;
+	
+	// Assemble modal
+	modalContent.appendChild(closeBtn);
+	modalContent.appendChild(imageSection);
+	modalContent.appendChild(detailsSection);
+	modal.appendChild(modalContent);
+	
+	// Add modal to body
+	document.body.appendChild(modal);
+	
+	// Close modal when clicking outside
+	modal.onclick = function(event) {
+		if (event.target === modal) {
+			document.body.removeChild(modal);
+		}
+	};
+	
+	// Add escape key listener
+	var escapeHandler = function(event) {
+		if (event.key === 'Escape') {
+			document.body.removeChild(modal);
+			document.removeEventListener('keydown', escapeHandler);
+		}
+	};
+	document.addEventListener('keydown', escapeHandler);
+}
+
+// Function to download image
+function downloadImage(src, filename) {
+	var link = document.createElement('a');
+	link.href = src;
+	link.download = filename;
+	document.body.appendChild(link);
+	link.click();
+	document.body.removeChild(link);
+}
+
+// Legacy function for compatibility
+function enlargeImage(src, title) {
+	enlargeImageWithDetails(src, title, 0, 0, 0, 0, 'unknown');
+}
+
+ document.addEventListener('DOMContentLoaded', function() {
+    const sessionElement = document.getElementById('session-id');
+    if (sessionElement && sessionElement.dataset.sessionId) {
+        const sessionId = sessionElement.dataset.sessionId;
+        console.log('Page loaded, attempting to load analysis data for session:', sessionId);
+        loadAnalysisData(sessionId);
+        
+        // Initialize image loading for all images
+        initializeImageLoading();
+    } else {
+        console.error('Session ID element not found or missing session ID');
+    }
+});
+
+// Function to initialize image loading for all images on the page
+function initializeImageLoading() {
+    const allImages = document.querySelectorAll('img[data-image-name][data-session-id]');
+    allImages.forEach(img => {
+        if (img.src.includes('placeholder.png')) {
+            const imageName = img.dataset.imageName;
+            const sessionId = img.dataset.sessionId;
+            if (imageName && sessionId) {
+                img.src = findImagePath(imageName, sessionId);
+            }
+        }
+    });
+}
+ 
+// Add switchView function for grid/list toggle
+function switchView(viewType) {
+	const gridView = document.getElementById('grid-view');
+	const listView = document.getElementById('list-view');
+	const gridBtn = document.getElementById('grid-view-btn');
+	const listBtn = document.getElementById('list-view-btn');
+	
+	if (viewType === 'grid') {
+		gridView.style.display = 'grid'; // Use grid for grid view
+		listView.style.display = 'none';
+		gridBtn.classList.add('active');
+		listBtn.classList.remove('active');
+		localStorage.setItem('imageViewType', 'grid');
+	} else {
+		gridView.style.display = 'none';
+		listView.style.display = 'flex'; // Use flex for list view
+		gridBtn.classList.remove('active');
+		listBtn.classList.add('active');
+		localStorage.setItem('imageViewType', 'list');
+	}
+}
+
+// Ensure view is set on page load
+document.addEventListener('DOMContentLoaded', function() {
+	const savedViewType = localStorage.getItem('imageViewType') || 'grid';
+	switchView(savedViewType);
+});
+
+// Function to download report
+function downloadReport(type, sessionId) {
+    window.open(`/api/reports/download/${type}/${sessionId}`, '_blank');
+}
+ </script> 
+{% endblock %}

@@ -1,0 +1,85 @@
+{
+  "analysis_id": "analysis_9d13b903_1767861315",
+  "session_id": 70,
+  "timestamp": "2026-01-08T16:34:50.699458",
+  "processing_time": 24.3498,
+  "model_used": "qwen3-vl:235b-cloud",
+  "image_path": "results\\IMG_6740_JPG.rf.97035f22aaa05762f05d59bbeba14323_70_annotated.jpg",
+  "detection_summary": {
+    "healthy_count": 0,
+    "unhealthy_count": 1,
+    "total_count": 1,
+    "health_percentage": 0.0
+  },
+  "ai_analysis": {
+    "analysis": {
+      "overall_assessment": "The single detected tea leaf shows severe discoloration and necrotic lesions, indicating complete loss of marketable quality. No healthy tissue remains for premium processing.",
+      "severity_level": "High",
+      "quality_grade": "Reject"
+    },
+    "pollution_diagnosis": {
+      "symptoms_observed": "Yellowing or bleaching",
+      "primary_pollution_source": [
+        "Ozone (O3) exposure"
+      ],
+      "pollution_reduction_solutions": [
+        "Install ozone-absorbing buffer zones with species like silver birch or poplar around tea fields",
+        "Apply kaolin-based particle film sprays to create protective leaf barriers",
+        "Implement real-time air quality monitoring with automatic irrigation activation during high-ozone periods"
+      ]
+    },
+    "processing_recommendations": {
+      "immediate_actions": [
+        "Isolate and quarantine all harvested leaves from affected sections",
+        "Conduct laboratory analysis to confirm pollutant concentration levels",
+        "Suspend processing of current batch until root cause is identified"
+      ],
+      "sorting_strategy": "Complete rejection of all leaves from affected plants; no salvageable material exists",
+      "processing_method": "Not applicable - leaves must be diverted from commercial processing",
+      "quality_preservation": [
+        "Document affected areas for future reference",
+        "Preserve leaf samples for pollutant analysis"
+      ]
+    },
+    "waste_prevention": {
+      "salvageable_portions": "No marketable portions remain; entire leaf is compromised",
+      "alternative_uses": [
+        "Compost for non-tea agricultural use",
+        "Soil amendment for ornamental plants (after pollutant testing)"
+      ],
+      "composting_guidelines": "Shred leaves and mix with 3:1 ratio of carbon-rich materials (sawdust, straw); maintain 55-60°C for 14 days to break down pollutants",
+      "prevention_measures": [
+        "Establish 50-meter buffer zones with pollution-tolerant vegetation",
+        "Implement predictive air quality alerts for harvest scheduling",
+        "Install windbreaks with ozone-absorbing species"
+      ]
+    },
+    "economic_impact": {
+      "estimated_loss_percentage": "100%",
+      "cost_saving_opportunities": [
+        "Redirect rejected leaves to low-cost composting operations",
+        "Claim insurance coverage for pollution-related crop loss",
+        "Negotiate with local farms for compost exchange programs"
+      ],
+      "value_recovery_methods": [
+        "Convert to organic fertilizer for non-food crops",
+        "Use in biogas production if facilities available"
+      ]
+    },
+    "recommendations": {
+      "priority_actions": [
+        "Implement immediate ozone monitoring system with SMS alerts",
+        "Plant 30% of field perimeter with ozone-absorbing species within 30 days",
+        "Conduct soil and leaf tissue analysis to determine residual pollutant levels"
+      ],
+      "timeline": "Critical actions within 7 days; full remediation plan execution within 90 days",
+      "monitoring_points": [
+        "Daily ozone concentration levels",
+        "New leaf growth health indicators",
+        "Soil pollutant accumulation rates",
+        "Buffer zone vegetation effectiveness"
+      ]
+    }
+  },
+  "status": "completed"
+}

@@ -1,0 +1,84 @@
+{
+  "analysis_id": "analysis_75e570c9_1762075000",
+  "session_id": 1,
+  "timestamp": "2025-11-02T17:16:19.094656",
+  "processing_time": 21.102254,
+  "model_used": "qwen3-vl:235b-cloud",
+  "image_path": "results\\IMG_6738_JPG.rf.ff01f292792a95f9c8ee6a9349ce5d9c_1_annotated.jpg",
+  "detection_summary": {
+    "healthy_count": 0,
+    "unhealthy_count": 1,
+    "total_count": 1,
+    "health_percentage": 0.0
+  },
+  "ai_analysis": {
+    "analysis": {
+      "overall_assessment": "The single detected tea leaf shows multiple yellow lesions indicating severe physiological stress, likely from environmental pollutants. The leaf's compromised structure and discoloration suggest significant damage to photosynthetic capacity.",
+      "severity_level": "High",
+      "quality_grade": "Reject"
+    },
+    "pollution_diagnosis": {
+      "symptoms_observed": "Yellowing or bleaching",
+      "primary_pollution_source": [
+        "Sulfur dioxide (SO₂) exposure"
+      ],
+      "pollution_reduction_solutions": [
+        "Install windbreaks with SO₂-absorbing species (e.g., poplar trees) around plantation edges",
+        "Apply calcium-based foliar sprays (0.5% calcium chloride) as immediate protective coating",
+        "Transition to low-sulfur fuel sources for nearby machinery and collaborate with local industries on emission controls"
+      ]
+    },
+    "processing_recommendations": {
+      "immediate_actions": [
+        "Quarantine affected plant sections to prevent cross-contamination",
+        "Conduct leaf tissue analysis for sulfur accumulation levels",
+        "Suspend plucking in the affected block until source identification"
+      ],
+      "sorting_strategy": "Complete rejection of all leaves showing yellow lesions; no mixing with healthy harvest",
+      "processing_method": "Not recommended for commercial processing due to contamination risk",
+      "quality_preservation": [
+        "Isolate unaffected adjacent leaves for separate processing",
+        "Increase oxidation time during withering to reduce sulfur compounds"
+      ]
+    },
+    "waste_prevention": {
+      "salvageable_portions": "No usable portions due to extensive lesion coverage (>30% of leaf area)",
+      "alternative_uses": [
+        "Extract tannins for natural dye production",
+        "Use in biochar production for soil remediation"
+      ],
+      "composting_guidelines": "Layer with 3:1 ratio of brown materials (dried leaves/sawdust), maintain pH 6.5-7.0 with lime amendment, and aerate weekly to accelerate decomposition of sulfur compounds",
+      "prevention_measures": [
+        "Deploy real-time SO₂ sensors at field perimeter",
+        "Implement 10m buffer zones with pollution-tolerant cover crops",
+        "Rotate to SO₂-resistant cultivars (e.g., TV1, TV23)"
+      ]
+    },
+    "economic_impact": {
+      "estimated_loss_percentage": "100%",
+      "cost_saving_opportunities": [
+        "Redirect rejected leaves to value-added byproduct streams",
+        "Claim agricultural insurance for pollution-related crop damage",
+        "Partner with local industries for emission reduction subsidies"
+      ],
+      "value_recovery_methods": [
+        "Convert to organic fertilizer through controlled composting",
+        "Sell to research institutions for pollution impact studies"
+      ]
+    },
+    "recommendations": {
+      "priority_actions": [
+        "Conduct 72-hour air quality monitoring at the affected site",
+        "Establish emergency windbreak barriers within 1 week",
+        "Initiate soil sulfur testing and liming if pH < 5.5"
+      ],
+      "timeline": "Immediate (0-7 days): Containment; Short-term (2-4 weeks): Source identification; Medium-term (3 months): Emission control implementation",
+      "monitoring_points": [
+        "New leaf emergence for symptom recurrence",
+        "SO₂ concentration levels at 0.5m above canopy",
+        "Soil sulfate content and pH biweekly"
+      ]
+    }
+  },
+  "status": "completed"
+}

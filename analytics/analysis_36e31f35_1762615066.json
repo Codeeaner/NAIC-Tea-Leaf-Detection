@@ -1,0 +1,87 @@
+{
+  "analysis_id": "analysis_36e31f35_1762615066",
+  "session_id": 83,
+  "timestamp": "2025-11-08T23:17:22.878530",
+  "processing_time": 24.084543,
+  "model_used": "qwen3-vl:235b-cloud",
+  "image_path": "results\\c07250c8-e7c0-4d73-a898-7f5b37b68848_83_annotated.jpg",
+  "detection_summary": {
+    "healthy_count": 3,
+    "unhealthy_count": 3,
+    "total_count": 6,
+    "health_percentage": 50.0
+  },
+  "ai_analysis": {
+    "analysis": {
+      "overall_assessment": "The tea leaf batch shows significant quality degradation with 50% of leaves classified as unhealthy, indicating moderate to severe stress. The presence of necrotic spots, browning, and physical damage suggests environmental or chemical stressors are impacting leaf viability.",
+      "severity_level": "Medium",
+      "quality_grade": "Below standard"
+    },
+    "pollution_diagnosis": {
+      "symptoms_observed": "Black or necrotic spots",
+      "primary_pollution_source": [
+        "Acid rain or excess nitrogen fertilizers"
+      ],
+      "pollution_reduction_solutions": [
+        "Apply lime to soil to neutralize acidity and conduct regular soil pH testing",
+        "Install windbreaks or protective netting to reduce direct exposure to acidic precipitation",
+        "Transition to slow-release organic fertilizers to prevent nitrogen overload and runoff"
+      ]
+    },
+    "processing_recommendations": {
+      "immediate_actions": [
+        "Isolate healthy leaves immediately to prevent cross-contamination",
+        "Reduce processing temperature to minimize further degradation of compromised leaves",
+        "Conduct microbial testing on unhealthy leaves to rule out pathogen spread"
+      ],
+      "sorting_strategy": "Manual sorting by visual inspection with UV light to detect hidden necrosis; separate into three tiers: premium (undamaged healthy), standard (minor blemishes), and reject (severe necrosis)",
+      "processing_method": "Process healthy leaves as orthodox black tea; use defective leaves for low-temperature green tea extraction to preserve residual antioxidants",
+      "quality_preservation": [
+        "Store healthy leaves in humidity-controlled environments below 60% RH",
+        "Use antioxidant-rich rinses during withering to stabilize cell structure",
+        "Limit oxidation time for compromised leaves to prevent tannin degradation"
+      ]
+    },
+    "waste_prevention": {
+      "salvageable_portions": "Healthy leaves (50%) and marginally damaged leaves with <20% necrosis",
+      "alternative_uses": [
+        "Necrotic leaves for biochar production to improve soil health",
+        "Damaged leaves as base material for herbal infusions with added botanicals",
+        "Leaf fragments for tea-based compost accelerators"
+      ],
+      "composting_guidelines": "Shred unusable leaves and mix with 3:1 ratio of carbon-rich materials (sawdust, straw); maintain 55-65°C for 14 days to eliminate pathogens",
+      "prevention_measures": [
+        "Implement quarterly soil testing for pH and nitrogen levels",
+        "Establish buffer zones with acid-tolerant plants around tea fields",
+        "Adopt precision irrigation to reduce fertilizer leaching"
+      ]
+    },
+    "economic_impact": {
+      "estimated_loss_percentage": "45%",
+      "cost_saving_opportunities": [
+        "Recover 20% value from defective leaves through biochar production",
+        "Reduce waste disposal costs by 30% via on-site composting",
+        "Leverage premium processing for healthy leaves to offset losses"
+      ],
+      "value_recovery_methods": [
+        "Partner with cosmetic companies for tea extract from damaged leaves",
+        "Sell composted material to local organic farms",
+        "Develop value-added 'imperfect leaf' tea blends at discounted rates"
+      ]
+    },
+    "recommendations": {
+      "priority_actions": [
+        "Immediately implement manual sorting with UV verification",
+        "Conduct soil remediation with lime application within 72 hours",
+        "Install weather monitoring stations to track acid rain patterns"
+      ],
+      "timeline": "Sorting: immediate; Soil remediation: 1 week; Long-term monitoring: 30 days",
+      "monitoring_points": [
+        "Daily necrosis progression in stored leaves",
+        "Soil pH weekly for 30 days",
+        "Atmospheric SO₂ and NOx levels biweekly"
+      ]
+    }
+  },
+  "status": "completed"
+}

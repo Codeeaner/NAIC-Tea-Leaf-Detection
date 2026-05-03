@@ -1,0 +1,87 @@
+{
+  "analysis_id": "analysis_ce1444c4_1762650671",
+  "session_id": 59,
+  "timestamp": "2025-11-09T09:10:46.051311",
+  "processing_time": 25.722206,
+  "model_used": "qwen3-vl:235b-cloud",
+  "image_path": "results\\captured_image_1762604704416_56_59_annotated.jpg",
+  "detection_summary": {
+    "healthy_count": 2,
+    "unhealthy_count": 4,
+    "total_count": 6,
+    "health_percentage": 33.33333333333333
+  },
+  "ai_analysis": {
+    "analysis": {
+      "overall_assessment": "The tea leaves exhibit significant damage with 66.7% classified as unhealthy, showing extensive necrotic spots, holes, and discoloration. This indicates severe stress from environmental or chemical factors, compromising overall crop quality.",
+      "severity_level": "High",
+      "quality_grade": "Below standard"
+    },
+    "pollution_diagnosis": {
+      "symptoms_observed": "Black or necrotic spots",
+      "primary_pollution_source": [
+        "Acid rain or excess nitrogen fertilizers"
+      ],
+      "pollution_reduction_solutions": [
+        "Immediately apply agricultural lime to neutralize soil acidity and reduce foliar damage",
+        "Implement windbreaks (e.g., bamboo fences) to minimize direct exposure to acidic precipitation",
+        "Transition to slow-release nitrogen fertilizers and conduct monthly soil pH testing to prevent over-application"
+      ]
+    },
+    "processing_recommendations": {
+      "immediate_actions": [
+        "Isolate healthy leaves (33.3%) for premium processing within 24 hours to prevent further degradation",
+        "Rinse unhealthy leaves with pH-balanced water to remove residual acidic compounds",
+        "Conduct microbial testing on damaged leaves to rule out pathogen contamination"
+      ],
+      "sorting_strategy": "Use optical sorting machines to separate leaves by health status at 0.5mm resolution, prioritizing removal of leaves with >30% necrotic area",
+      "processing_method": "Process healthy leaves using orthodox rolling and oxidation for premium black tea; convert unhealthy leaves into powdered green tea or tea-based animal feed",
+      "quality_preservation": [
+        "Store healthy leaves in vacuum-sealed containers with oxygen absorbers",
+        "Maintain processing temperature below 40°C to prevent enzymatic browning",
+        "Use antioxidant-rich steam treatment during withering"
+      ]
+    },
+    "waste_prevention": {
+      "salvageable_portions": "Healthy leaves (33.3%) and necrotic-free edges of moderately damaged leaves",
+      "alternative_uses": [
+        "Unhealthy leaves with <50% damage: convert to tea-based compost accelerators",
+        "Severely damaged leaves: extract polyphenols for cosmetic applications",
+        "Leaf fragments: use as mulch in organic vegetable beds"
+      ],
+      "composting_guidelines": "Layer damaged leaves with 3:1 ratio of carbon-rich materials (sawdust, rice husks), maintain 55-65°C temperature for 14 days with weekly aeration to neutralize acidic compounds",
+      "prevention_measures": [
+        "Install rainwater harvesting systems to avoid irrigation with acidic precipitation",
+        "Plant buffer zones of acid-tolerant species (e.g., azaleas) around tea fields",
+        "Adopt precision agriculture techniques for targeted fertilizer application"
+      ]
+    },
+    "economic_impact": {
+      "estimated_loss_percentage": "66.7%",
+      "cost_saving_opportunities": [
+        "Recover 20% value from damaged leaves through polyphenol extraction partnerships",
+        "Reduce future losses by 40% through windbreak implementation (ROI within 18 months)",
+        "Offset waste disposal costs by selling compost to local organic farms"
+      ],
+      "value_recovery_methods": [
+        "Sell healthy leaves as single-origin premium tea at 25% price premium",
+        "Develop value-added products (e.g., tea-infused skincare) from damaged leaf extracts",
+        "Participate in carbon credit programs for sustainable field management practices"
+      ]
+    },
+    "recommendations": {
+      "priority_actions": [
+        "Immediately process and market healthy leaves to capture remaining value",
+        "Conduct soil remediation with lime application within 72 hours",
+        "Install temporary rain covers over 50% of affected field sections"
+      ],
+      "timeline": "Immediate actions within 72 hours; soil remediation complete in 2 weeks; structural solutions (windbreaks) implemented within 3 months",
+      "monitoring_points": [
+        "Weekly leaf health assessment using NDVI imaging",
+        "Biweekly soil pH and nitrogen level testing",
+        "Monthly market analysis of value-added product demand"
+      ]
+    }
+  },
+  "status": "completed"
+}

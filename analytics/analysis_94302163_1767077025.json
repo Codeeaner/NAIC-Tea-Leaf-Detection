@@ -1,0 +1,85 @@
+{
+  "analysis_id": "analysis_94302163_1767077025",
+  "session_id": 68,
+  "timestamp": "2025-12-30T14:43:11.837650",
+  "processing_time": 33.965841,
+  "model_used": "qwen3-vl:235b-cloud",
+  "image_path": "results\\20221213_084406_jpg.rf.790b93a2e56a98879659401d50b69202_68_annotated.jpg",
+  "detection_summary": {
+    "healthy_count": 0,
+    "unhealthy_count": 1,
+    "total_count": 1,
+    "health_percentage": 0.0
+  },
+  "ai_analysis": {
+    "analysis": {
+      "overall_assessment": "The single detected tea leaf exhibits severe necrotic damage with extensive black/brown lesions, indicating critical pollution exposure and complete loss of marketable quality.",
+      "severity_level": "High",
+      "quality_grade": "Reject"
+    },
+    "pollution_diagnosis": {
+      "symptoms_observed": "Black or necrotic spots",
+      "primary_pollution_source": [
+        "Sulfur dioxide (SO₂)"
+      ],
+      "pollution_reduction_solutions": [
+        "Install windbreak barriers with activated carbon filters to intercept airborne pollutants immediately",
+        "Apply calcium carbonate soil amendments to neutralize acidification from SO₂ deposition",
+        "Collaborate with local authorities to monitor industrial emissions and enforce emission controls within 5km radius"
+      ]
+    },
+    "processing_recommendations": {
+      "immediate_actions": [
+        "Isolate and quarantine all affected plants from healthy sections",
+        "Conduct emergency leaf tissue analysis for sulfur accumulation",
+        "Halt harvesting in the affected plot until pollution source is mitigated"
+      ],
+      "sorting_strategy": "Discard all leaves showing necrotic symptoms; no healthy portions are salvageable in this case",
+      "processing_method": "Not suitable for commercial processing - divert to waste stream for alternative uses",
+      "quality_preservation": [
+        "Store unaffected leaves from adjacent healthy plants in cool, dark conditions",
+        "Use antioxidant sprays (e.g., ascorbic acid solution) on neighboring plants as emergency protection"
+      ]
+    },
+    "waste_prevention": {
+      "salvageable_portions": "No marketable portions - complete leaf rejection required",
+      "alternative_uses": [
+        "Compost material for soil remediation",
+        "Biomass fuel for on-farm energy generation",
+        "Educational samples for pollution awareness training"
+      ],
+      "composting_guidelines": "Shred leaves and mix with 3:1 ratio of carbon-rich materials (sawdust, straw); maintain 55-60°C for 14 days to neutralize sulfur compounds",
+      "prevention_measures": [
+        "Install real-time air quality sensors at field perimeter",
+        "Establish 50m buffer zone with pollution-absorbing plants (e.g., willow, poplar)",
+        "Implement quarterly leaf tissue testing for sulfur accumulation"
+      ]
+    },
+    "economic_impact": {
+      "estimated_loss_percentage": "100%",
+      "cost_saving_opportunities": [
+        "Claim agricultural insurance for pollution-related crop damage",
+        "Convert waste stream to revenue through compost sales to local farms",
+        "Apply for government grants for pollution mitigation infrastructure"
+      ],
+      "value_recovery_methods": [
+        "Process as specialty 'pollution indicator' samples for environmental research",
+        "Use in soil remediation projects to demonstrate sulfur sequestration"
+      ]
+    },
+    "recommendations": {
+      "priority_actions": [
+        "Identify and confirm SO₂ emission source within 72 hours",
+        "Install emergency air filtration barriers within 1 week",
+        "Initiate soil remediation with lime application within 10 days"
+      ],
+      "timeline": "Critical actions within 1 week; full mitigation plan implementation within 60 days",
+      "monitoring_points": [
+        "Daily air quality measurements (SO₂ levels)",
+        "Weekly leaf tissue sulfur content analysis",
+        "Bi-weekly soil pH and sulfate concentration testing"
+      ]
+    }
+  },
+  "status": "completed"
+}

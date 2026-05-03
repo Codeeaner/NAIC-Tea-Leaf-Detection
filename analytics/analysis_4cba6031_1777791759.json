@@ -1,0 +1,87 @@
+{
+  "analysis_id": "analysis_4cba6031_1777791759",
+  "session_id": 1,
+  "timestamp": "2026-05-03T15:02:02.883424",
+  "processing_time": 36.171611,
+  "model_used": "qwen3-vl:235b-cloud",
+  "image_path": "results\\test_1_297a5ee3_annotated.jpg",
+  "detection_summary": {
+    "healthy_count": 14,
+    "unhealthy_count": 3,
+    "total_count": 17,
+    "health_percentage": 82.35294117647058
+  },
+  "ai_analysis": {
+    "analysis": {
+      "overall_assessment": "The tea leaves show a high proportion of healthy foliage (82.4%) with minor damage observed in 3 leaves. The majority exhibit vibrant green color and intact structure, indicating good growing conditions with localized stress factors.",
+      "severity_level": "Low",
+      "quality_grade": "Standard"
+    },
+    "pollution_diagnosis": {
+      "symptoms_observed": "Black or necrotic spots",
+      "primary_pollution_source": [
+        "Sulfur dioxide (SO₂) exposure"
+      ],
+      "pollution_reduction_solutions": [
+        "Install windbreak barriers with pollution-absorbing plants (e.g., bamboo or evergreen shrubs) around field perimeters",
+        "Apply kaolin clay-based foliar sprays to create protective leaf coatings that reduce pollutant absorption",
+        "Coordinate with local authorities to monitor industrial emissions and establish buffer zones near tea plantations"
+      ]
+    },
+    "processing_recommendations": {
+      "immediate_actions": [
+        "Hand-sort all leaves within 2 hours of harvest to prevent cross-contamination",
+        "Isolate damaged leaves in sealed containers to avoid moisture transfer to healthy leaves",
+        "Adjust withering time by 15% shorter for healthy leaves to preserve freshness"
+      ],
+      "sorting_strategy": "Separate leaves into three categories: 1) Premium (14 healthy leaves with no blemishes), 2) Standard (leaves with minor edge imperfections), 3) Defective (3 necrotic-spotted leaves requiring special processing)",
+      "processing_method": "Process healthy leaves using orthodox rolling method for premium black tea; defective leaves should undergo rapid oxidation at 35°C for 20 minutes to minimize off-flavors",
+      "quality_preservation": [
+        "Maintain 15-18°C temperature during transport",
+        "Use UV-protected packaging for sorted healthy leaves",
+        "Apply food-grade ascorbic acid mist (0.5%) to cut edges of healthy leaves"
+      ]
+    },
+    "waste_prevention": {
+      "salvageable_portions": "14 healthy leaves (82.4%) and 2 marginally damaged leaves with only tip discoloration",
+      "alternative_uses": [
+        "Defective leaves can be processed into tea dust for tea bags",
+        "Necrotic portions can be extracted for polyphenol concentrates used in cosmetics",
+        "Damaged leaves can be fermented into compost tea for organic farming"
+      ],
+      "composting_guidelines": "Shred unusable leaves and layer with 3:1 ratio of carbon-rich materials (sawdust, straw); maintain 55-65°C for 14 days with weekly aeration to neutralize potential pollutants",
+      "prevention_measures": [
+        "Install real-time air quality sensors at field edges",
+        "Implement 30-day pre-harvest pollution monitoring protocol",
+        "Rotate planting areas annually to avoid cumulative soil contamination"
+      ]
+    },
+    "economic_impact": {
+      "estimated_loss_percentage": "17.6%",
+      "cost_saving_opportunities": [
+        "Convert defective leaves into value-added products (tea dust, polyphenol extracts)",
+        "Reduce waste disposal costs through on-site composting",
+        "Qualify for organic certification by implementing pollution mitigation measures"
+      ],
+      "value_recovery_methods": [
+        "Sell composted material to neighboring farms at $0.15/kg",
+        "Partner with cosmetic manufacturers for polyphenol extraction",
+        "Use processed tea dust for low-cost retail tea bag production"
+      ]
+    },
+    "recommendations": {
+      "priority_actions": [
+        "Immediately implement manual sorting with UV inspection lamps to identify hidden damage",
+        "Establish 5-meter buffer zones with SO₂-absorbing vegetation within 30 days",
+        "Conduct soil and leaf tissue analysis to determine pollutant concentration levels"
+      ],
+      "timeline": "Immediate (0-24 hours) for sorting; 1-2 months for buffer zone establishment; 3 months for comprehensive pollution monitoring system implementation",
+      "monitoring_points": [
+        "Daily visual inspection of new growth for spot recurrence",
+        "Bi-weekly air quality measurements at canopy height",
+        "Post-processing quality analysis of both healthy and salvaged leaf products"
+      ]
+    }
+  },
+  "status": "completed"
+}

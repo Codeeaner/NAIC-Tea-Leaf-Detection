@@ -1,0 +1,87 @@
+{
+  "analysis_id": "analysis_272f93e7_1762660117",
+  "session_id": 61,
+  "timestamp": "2025-11-09T11:48:12.789865",
+  "processing_time": 24.909353,
+  "model_used": "qwen3-vl:235b-cloud",
+  "image_path": "results\\captured_image_1762604704416_56_61_annotated.jpg",
+  "detection_summary": {
+    "healthy_count": 2,
+    "unhealthy_count": 4,
+    "total_count": 6,
+    "health_percentage": 33.33333333333333
+  },
+  "ai_analysis": {
+    "analysis": {
+      "overall_assessment": "The tea leaf batch shows significant quality degradation with 66.7% of leaves classified as unhealthy, indicating widespread damage that compromises marketability and processing potential.",
+      "severity_level": "High",
+      "quality_grade": "Below standard"
+    },
+    "pollution_diagnosis": {
+      "symptoms_observed": "Black or necrotic spots",
+      "primary_pollution_source": [
+        "Herbicide damage or soil contamination"
+      ],
+      "pollution_reduction_solutions": [
+        "Immediately establish 10-meter buffer zones between tea fields and adjacent agricultural areas using herbicides",
+        "Conduct soil testing for residual herbicides and implement activated charcoal soil amendment in contaminated zones",
+        "Transition to mechanical weeding practices and introduce cover crops to reduce herbicide dependency"
+      ]
+    },
+    "processing_recommendations": {
+      "immediate_actions": [
+        "Hand-sort healthy leaves within 2 hours to prevent cross-contamination",
+        "Chill healthy leaves at 4°C to slow enzymatic degradation",
+        "Isolate damaged leaves in sealed containers to prevent mold spread"
+      ],
+      "sorting_strategy": "Three-tier sorting: 1) Premium (intact green leaves), 2) Substandard (partially damaged leaves for CTC processing), 3) Reject (severely damaged leaves for composting)",
+      "processing_method": "Process healthy leaves using orthodox manufacturing with reduced oxidation time; use damaged leaves for granular CTC production if contamination levels are below safety thresholds",
+      "quality_preservation": [
+        "Use antioxidant-rich steam treatment during withering",
+        "Implement nitrogen-flushed packaging for healthy leaf batches",
+        "Reduce processing temperature by 5°C to minimize further browning"
+      ]
+    },
+    "waste_prevention": {
+      "salvageable_portions": "The two healthy leaves (33.3% of batch) and minimally damaged sections of partially affected leaves",
+      "alternative_uses": [
+        "Damaged leaves for organic fertilizer production",
+        "Leaf fragments for biochar manufacturing",
+        "Mildly affected leaves for herbal infusion blends with masking flavors"
+      ],
+      "composting_guidelines": "Shred leaves into 2cm pieces, layer with 3:1 ratio of brown materials (sawdust), maintain 55-60°C for 14 days with weekly turning to neutralize contaminants",
+      "prevention_measures": [
+        "Install windbreaks to prevent chemical drift",
+        "Implement GPS-guided precision spraying in adjacent fields",
+        "Conduct quarterly soil health audits with herbicide residue screening"
+      ]
+    },
+    "economic_impact": {
+      "estimated_loss_percentage": "66.7%",
+      "cost_saving_opportunities": [
+        "Recover 15-20% value from damaged leaves through organic fertilizer production",
+        "Reduce waste disposal costs by 30% via on-site composting",
+        "Negotiate discounted processing rates for substandard batches with specialized manufacturers"
+      ],
+      "value_recovery_methods": [
+        "Sell healthy leaves as specialty single-origin product at premium pricing",
+        "Partner with cosmetic companies for damaged leaf extracts",
+        "Use composted material to reduce commercial fertilizer purchases"
+      ]
+    },
+    "recommendations": {
+      "priority_actions": [
+        "Immediate hand-sorting and processing of healthy leaves within 24 hours",
+        "Soil and leaf tissue analysis for herbicide residues within 7 days",
+        "Establish physical barriers between tea fields and neighboring farms within 30 days"
+      ],
+      "timeline": "Critical actions (0-72 hours), Diagnostic testing (1-2 weeks), Structural prevention (1-3 months)",
+      "monitoring_points": [
+        "Daily leaf damage progression tracking",
+        "Bi-weekly soil herbicide residue testing",
+        "Post-harvest yield comparison of protected vs. unprotected zones"
+      ]
+    }
+  },
+  "status": "completed"
+}

@@ -1,0 +1,83 @@
+{
+  "analysis_id": "analysis_1e600b58_1762075776",
+  "session_id": 4,
+  "timestamp": "2025-11-02T17:29:11.095557",
+  "processing_time": 25.694099,
+  "model_used": "qwen3-vl:235b-cloud",
+  "image_path": "results\\PXL_20221212_122249051-MP_jpg.rf.b304c6f239817e1df0b1a3cdb5080309_4_annotated.jpg",
+  "detection_summary": {
+    "healthy_count": 0,
+    "unhealthy_count": 1,
+    "total_count": 1,
+    "health_percentage": 0.0
+  },
+  "ai_analysis": {
+    "analysis": {
+      "overall_assessment": "The single detected tea leaf shows significant yellowing and spotting, indicating severe physiological stress and compromised quality. With 100% of leaves classified as unhealthy, the batch is unsuitable for standard tea production.",
+      "severity_level": "High",
+      "quality_grade": "Reject"
+    },
+    "pollution_diagnosis": {
+      "symptoms_observed": "Yellowing or bleaching",
+      "primary_pollution_source": [
+        "Ozone (O3) exposure"
+      ],
+      "pollution_reduction_solutions": [
+        "Install ozone-absorbing vegetation buffers (e.g., silver birch, poplar) around tea fields",
+        "Apply kaolin-based particle films as immediate leaf protectants to reduce ozone penetration",
+        "Implement real-time air quality monitoring with automated alerts for high ozone periods"
+      ]
+    },
+    "processing_recommendations": {
+      "immediate_actions": [
+        "Halt harvesting in the affected section immediately",
+        "Conduct field-wide leaf sampling to assess contamination spread",
+        "Isolate contaminated leaves from healthy batches"
+      ],
+      "sorting_strategy": "Complete rejection of all leaves showing yellowing symptoms; manual sorting with UV light inspection to detect early-stage damage",
+      "processing_method": "Not suitable for orthodox or CTC processing; consider experimental low-temperature composting for soil amendment trials",
+      "quality_preservation": [
+        "Store healthy leaves separately in climate-controlled environments",
+        "Reduce leaf handling to prevent mechanical stress on compromised tissues"
+      ]
+    },
+    "waste_prevention": {
+      "salvageable_portions": "None - the leaf shows systemic damage with no viable sections",
+      "alternative_uses": [
+        "Experimental biochar production for soil remediation",
+        "Laboratory testing for pollutant absorption capacity"
+      ],
+      "composting_guidelines": "Shred leaves and mix with 3:1 ratio of brown materials (sawdust, dry leaves); maintain 55-60°C for 14 days to neutralize potential chemical residues",
+      "prevention_measures": [
+        "Plant ozone-tolerant tea varieties (e.g., TV1, TV23)",
+        "Establish windbreaks with pollution-filtering species",
+        "Adjust harvesting schedules to avoid high-ozone periods (midday)"
+      ]
+    },
+    "economic_impact": {
+      "estimated_loss_percentage": "100%",
+      "cost_saving_opportunities": [
+        "Redirect affected leaves to soil amendment programs to reduce fertilizer costs",
+        "Leverage pollution data for insurance claims against environmental damage"
+      ],
+      "value_recovery_methods": [
+        "Convert to organic compost for farm use",
+        "Partner with research institutions for pollution impact studies"
+      ]
+    },
+    "recommendations": {
+      "priority_actions": [
+        "Deploy ozone monitoring systems within 48 hours",
+        "Implement protective kaolin sprays on adjacent healthy sections",
+        "Conduct soil and leaf tissue analysis to confirm pollution source"
+      ],
+      "timeline": "Immediate (0-72 hours) for protective measures; 2-4 weeks for comprehensive environmental assessment",
+      "monitoring_points": [
+        "Daily ozone concentration levels",
+        "New leaf growth for symptom recurrence",
+        "Soil pH and nutrient balance"
+      ]
+    }
+  },
+  "status": "completed"
+}

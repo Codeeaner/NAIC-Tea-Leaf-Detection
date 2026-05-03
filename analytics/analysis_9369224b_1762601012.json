@@ -1,0 +1,84 @@
+{
+  "analysis_id": "analysis_9369224b_1762601012",
+  "session_id": 27,
+  "timestamp": "2025-11-08T19:23:05.756896",
+  "processing_time": 26.308602,
+  "model_used": "qwen3-vl:235b-cloud",
+  "image_path": "results\\captured_image_1762600975820_27_annotated.jpg",
+  "detection_summary": {
+    "healthy_count": 0,
+    "unhealthy_count": 1,
+    "total_count": 1,
+    "health_percentage": 0.0
+  },
+  "ai_analysis": {
+    "analysis": {
+      "overall_assessment": "The tea leaf exhibits severe necrosis, physical damage, and significant browning, indicating critical deterioration that renders it unsuitable for commercial processing.",
+      "severity_level": "High",
+      "quality_grade": "Reject"
+    },
+    "pollution_diagnosis": {
+      "symptoms_observed": "Black or necrotic spots",
+      "primary_pollution_source": [
+        "Herbicide damage or soil contamination"
+      ],
+      "pollution_reduction_solutions": [
+        "Immediately cease use of contaminated irrigation water and conduct soil herbicide residue testing",
+        "Establish 10-meter buffer zones between tea fields and adjacent agricultural areas using herbicides",
+        "Transition to organic farming practices with certified herbicide-free soil management within 6 months"
+      ]
+    },
+    "processing_recommendations": {
+      "immediate_actions": [
+        "Isolate and discard all affected leaves to prevent contamination of healthy batches",
+        "Conduct full field inspection to identify extent of contamination",
+        "Test processing equipment for chemical residues"
+      ],
+      "sorting_strategy": "Complete rejection of all leaves showing necrotic symptoms; implement UV light inspection for hidden damage",
+      "processing_method": "Not applicable - batch must be discarded due to contamination risk",
+      "quality_preservation": [
+        "Store unaffected leaves in climate-controlled environment",
+        "Implement pre-processing visual inspection protocol"
+      ]
+    },
+    "waste_prevention": {
+      "salvageable_portions": "None - leaf is fully compromised with no viable sections",
+      "alternative_uses": [
+        "Use as bio-indicator material for pollution studies",
+        "Create educational samples for farmer training programs"
+      ],
+      "composting_guidelines": "Compost only after 30-day quarantine period with 3:1 ratio of green waste to contaminated leaves; monitor temperature to ensure pathogen destruction",
+      "prevention_measures": [
+        "Implement soil testing quarterly for herbicide residues",
+        "Install windbreaks to prevent chemical drift from neighboring farms",
+        "Adopt precision agriculture techniques for targeted application of inputs"
+      ]
+    },
+    "economic_impact": {
+      "estimated_loss_percentage": "100%",
+      "cost_saving_opportunities": [
+        "Redirect resources to unaffected fields to maximize yield",
+        "Claim insurance coverage for chemical contamination incidents",
+        "Negotiate compensation from neighboring farms if contamination source is identified"
+      ],
+      "value_recovery_methods": [
+        "Convert rejected leaves into educational materials for agricultural workshops",
+        "Develop pollution-resistant tea varieties through breeding programs"
+      ]
+    },
+    "recommendations": {
+      "priority_actions": [
+        "Conduct emergency soil and water testing for herbicide residues",
+        "Establish physical barriers between affected field and neighboring farms",
+        "Implement real-time pollution monitoring system in tea fields"
+      ],
+      "timeline": "Immediate (0-7 days) for testing and containment; 3 months for barrier installation; 6 months for full remediation plan implementation",
+      "monitoring_points": [
+        "Weekly soil herbicide residue levels",
+        "Leaf health indicators in adjacent fields",
+        "Air quality data for chemical drift patterns"
+      ]
+    }
+  },
+  "status": "completed"
+}

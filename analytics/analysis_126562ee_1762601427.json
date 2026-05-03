@@ -1,0 +1,87 @@
+{
+  "analysis_id": "analysis_126562ee_1762601427",
+  "session_id": 34,
+  "timestamp": "2025-11-08T19:29:50.691091",
+  "processing_time": 37.26708,
+  "model_used": "qwen3-vl:235b-cloud",
+  "image_path": "results\\9ca1d887-a65a-43fe-9220-d6d8079eff4e_34_annotated.jpg",
+  "detection_summary": {
+    "healthy_count": 3,
+    "unhealthy_count": 1,
+    "total_count": 4,
+    "health_percentage": 75.0
+  },
+  "ai_analysis": {
+    "analysis": {
+      "overall_assessment": "The sample shows 75% healthy tea leaves with vibrant green color and intact structure, indicating generally good quality. However, one leaf exhibits signs of stress, suggesting localized environmental or contamination issues.",
+      "severity_level": "Low",
+      "quality_grade": "Standard"
+    },
+    "pollution_diagnosis": {
+      "symptoms_observed": "Sticky residues / sheen",
+      "primary_pollution_source": [
+        "Pesticide or chemical spray"
+      ],
+      "pollution_reduction_solutions": [
+        "Implement immediate buffer zones with windbreaks to reduce chemical drift",
+        "Switch to targeted biopesticides with shorter residual periods",
+        "Install overhead irrigation systems to wash off surface residues post-application"
+      ]
+    },
+    "processing_recommendations": {
+      "immediate_actions": [
+        "Isolate the unhealthy leaf for laboratory residue testing",
+        "Conduct pH and moisture checks on all harvested batches",
+        "Sanitize processing equipment to prevent cross-contamination"
+      ],
+      "sorting_strategy": "Manual sorting with UV light inspection to detect chemical residues; separate leaves with visible sheen or abnormal reflectivity",
+      "processing_method": "Standard orthodox processing for healthy leaves with reduced oxidation time to preserve freshness",
+      "quality_preservation": [
+        "Store healthy leaves in humidity-controlled environments below 65%",
+        "Use activated carbon filters in storage areas to absorb volatile compounds",
+        "Process healthy leaves within 24 hours to maintain enzymatic quality"
+      ]
+    },
+    "waste_prevention": {
+      "salvageable_portions": "Unaffected sections of marginally damaged leaves can be repurposed for tea powder production",
+      "alternative_uses": [
+        "Compost for non-edible crops",
+        "Extract polyphenols for cosmetic applications",
+        "Use as mulch for acid-loving ornamental plants"
+      ],
+      "composting_guidelines": "Shred leaves and mix with 3:1 carbon-rich material (e.g., wood chips); maintain 55-65°C for 14 days to degrade chemical residues",
+      "prevention_measures": [
+        "Adopt precision agriculture techniques for targeted chemical application",
+        "Implement real-time air quality monitoring near plantations",
+        "Train harvesters to identify and exclude contaminated leaves at source"
+      ]
+    },
+    "economic_impact": {
+      "estimated_loss_percentage": "25%",
+      "cost_saving_opportunities": [
+        "Recover value from damaged leaves through industrial extraction",
+        "Reduce chemical costs by 30% through precision application systems",
+        "Prevent future losses with predictive weather-based spray scheduling"
+      ],
+      "value_recovery_methods": [
+        "Sell healthy leaves as premium orthodox tea",
+        "Process residue-tested leaves for functional food ingredients",
+        "Partner with cosmetic manufacturers for polyphenol extraction"
+      ]
+    },
+    "recommendations": {
+      "priority_actions": [
+        "Conduct immediate pesticide residue analysis on the affected leaf",
+        "Implement UV-assisted sorting for next harvest",
+        "Establish 50m buffer zones between chemical application areas and tea fields"
+      ],
+      "timeline": "Critical actions within 72 hours; full implementation within 3 months",
+      "monitoring_points": [
+        "Weekly residue testing for 3 months",
+        "Daily visual inspection of leaf surface sheen",
+        "Monthly soil and air quality analysis near field boundaries"
+      ]
+    }
+  },
+  "status": "completed"
+}

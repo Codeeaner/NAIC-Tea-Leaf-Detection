@@ -1,0 +1,82 @@
+{
+  "analysis_id": "analysis_4cbf3435_1762075321",
+  "session_id": 2,
+  "timestamp": "2025-11-02T17:21:40.470939",
+  "processing_time": 20.990956,
+  "model_used": "qwen3-vl:235b-cloud",
+  "image_path": "results\\IMG_6794_JPG.rf.9be7c6b15914221eeab83ca08309053a_2_annotated.jpg",
+  "detection_summary": {
+    "healthy_count": 0,
+    "unhealthy_count": 1,
+    "total_count": 1,
+    "health_percentage": 0.0
+  },
+  "ai_analysis": {
+    "analysis": {
+      "overall_assessment": "The single detected tea leaf shows clear signs of disease or environmental stress, with a prominent necrotic lesion indicating compromised quality. No healthy portions are visible.",
+      "severity_level": "High",
+      "quality_grade": "Reject"
+    },
+    "pollution_diagnosis": {
+      "symptoms_observed": "Black or necrotic spots",
+      "primary_pollution_source": [
+        "Ozone (O3) exposure"
+      ],
+      "pollution_reduction_solutions": [
+        "Install windbreaks (e.g., bamboo screens or fast-growing shrubs) to reduce ozone exposure in vulnerable field sections",
+        "Apply foliar sprays of ascorbic acid (500 ppm) as an antioxidant shield during high-ozone periods",
+        "Shift harvesting to early morning when ozone concentrations are typically lowest"
+      ]
+    },
+    "processing_recommendations": {
+      "immediate_actions": [
+        "Isolate and discard all leaves showing necrotic symptoms to prevent contamination of healthy batches",
+        "Conduct field-wide inspection within 48 hours to assess spread",
+        "Test soil pH and nutrient levels to rule out secondary stress factors"
+      ],
+      "sorting_strategy": "Reject any leaf with visible necrotic spots; implement optical sorting with 0.5mm resolution for commercial batches",
+      "processing_method": "Not suitable for orthodox or CTC processing; consider as waste for composting rather than processing",
+      "quality_preservation": [
+        "Store healthy leaves in ventilated containers with humidity control (65-70%)",
+        "Process healthy leaves within 6 hours of harvest to minimize oxidation"
+      ]
+    },
+    "waste_prevention": {
+      "salvageable_portions": "None - the entire leaf is compromised by the necrotic lesion",
+      "alternative_uses": [
+        "Use as green manure in non-tea crop fields after shredding",
+        "Ferment with rice bran for microbial inoculant production"
+      ],
+      "composting_guidelines": "Chop leaves into 2-3cm pieces, layer with 3:1 carbon-rich material (e.g., dry grass), maintain 55-60°C for 14 days with weekly turning",
+      "prevention_measures": [
+        "Install ozone monitoring stations at field perimeter",
+        "Plant ozone-tolerant cover crops like clover between tea rows",
+        "Implement precision irrigation to reduce plant stress"
+      ]
+    },
+    "economic_impact": {
+      "estimated_loss_percentage": "100%",
+      "cost_saving_opportunities": [
+        "Redirect labor to inspect neighboring bushes before symptoms spread",
+        "Use rejected leaves for on-farm compost to reduce fertilizer costs"
+      ],
+      "value_recovery_methods": [
+        "Convert waste into biochar for soil amendment (yields 25-30% carbon-rich product)"
+      ]
+    },
+    "recommendations": {
+      "priority_actions": [
+        "Immediately cordon off affected section and destroy symptomatic leaves",
+        "Install 2m high windbreaks within 72 hours to protect adjacent plants",
+        "Conduct air quality testing for ozone levels during peak sunlight hours"
+      ],
+      "timeline": "Critical actions within 72 hours; full mitigation plan implementation within 30 days",
+      "monitoring_points": [
+        "Daily visual inspection of new growth in adjacent plants",
+        "Weekly ozone concentration measurements at 12:00-14:00",
+        "Soil nutrient analysis every 15 days for 2 months"
+      ]
+    }
+  },
+  "status": "completed"
+}

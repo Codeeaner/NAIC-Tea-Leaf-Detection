@@ -1,0 +1,87 @@
+{
+  "analysis_id": "analysis_77742402_1762661729",
+  "session_id": 64,
+  "timestamp": "2025-11-09T12:15:08.177169",
+  "processing_time": 21.19816,
+  "model_used": "qwen3-vl:235b-cloud",
+  "image_path": "results\\captured_image_1762604704416_56_64_annotated.jpg",
+  "detection_summary": {
+    "healthy_count": 2,
+    "unhealthy_count": 4,
+    "total_count": 6,
+    "health_percentage": 33.33333333333333
+  },
+  "ai_analysis": {
+    "analysis": {
+      "overall_assessment": "The tea leaf batch shows significant quality degradation with 66.7% of leaves classified as unhealthy, exhibiting severe necrotic damage and discoloration. Only 33.3% of leaves maintain acceptable quality for standard processing.",
+      "severity_level": "High",
+      "quality_grade": "Below standard"
+    },
+    "pollution_diagnosis": {
+      "symptoms_observed": "Black or necrotic spots",
+      "primary_pollution_source": [
+        "Ozone (O3) exposure"
+      ],
+      "pollution_reduction_solutions": [
+        "Install ozone-absorbing buffer zones with species like silver birch or poplar around tea plantations",
+        "Apply kaolin-based particle films as immediate foliar protectants to reduce ozone penetration",
+        "Implement precision irrigation to maintain leaf turgor pressure, reducing ozone uptake through stomata"
+      ]
+    },
+    "processing_recommendations": {
+      "immediate_actions": [
+        "Isolate healthy leaves (33.3%) for separate processing",
+        "Conduct moisture content testing on healthy leaves to prevent fermentation issues",
+        "Sanitize sorting equipment to prevent cross-contamination"
+      ],
+      "sorting_strategy": "Manual separation of healthy leaves (green, intact) from unhealthy leaves (brown, spotted) using color-coded trays; discard leaves with >30% necrotic area",
+      "processing_method": "Process healthy leaves as orthodox black tea with reduced oxidation time; convert severely damaged leaves to CTC (Crush, Tear, Curl) format for lower-grade markets",
+      "quality_preservation": [
+        "Store healthy leaves at 4°C with 85% humidity",
+        "Use antioxidant-rich processing additives (e.g., ascorbic acid solution dip)",
+        "Limit exposure to light during withering stage"
+      ]
+    },
+    "waste_prevention": {
+      "salvageable_portions": "Healthy leaf margins from partially damaged leaves (30-50% of unhealthy leaves)",
+      "alternative_uses": [
+        "Extract polyphenols from damaged leaves for cosmetic applications",
+        "Produce low-caffeine herbal infusions by blending with mint or lemongrass",
+        "Create tea-based compost accelerators"
+      ],
+      "composting_guidelines": "Shred damaged leaves, mix with 3:1 carbon-rich material (sawdust), maintain 55-60°C for 14 days with weekly turning to neutralize phytotoxic compounds",
+      "prevention_measures": [
+        "Install ozone monitoring stations at field edges",
+        "Shift harvesting to early morning when ozone levels are lowest",
+        "Develop ozone-resistant cultivars through selective breeding"
+      ]
+    },
+    "economic_impact": {
+      "estimated_loss_percentage": "66.7%",
+      "cost_saving_opportunities": [
+        "Recover 20-30% value from damaged leaves through polyphenol extraction",
+        "Reduce waste disposal costs by 40% through on-farm composting",
+        "Qualify for eco-certification premiums with documented pollution mitigation"
+      ],
+      "value_recovery_methods": [
+        "Partner with cosmetic manufacturers for leaf extract sales",
+        "Create 'imperfect tea' product line at 60% premium price point",
+        "Use composted material to reduce fertilizer costs by 25%"
+      ]
+    },
+    "recommendations": {
+      "priority_actions": [
+        "Immediately separate and process healthy leaves to prevent quality deterioration",
+        "Implement kaolin spray application within 72 hours to protect remaining crop",
+        "Establish ozone monitoring system with real-time SMS alerts"
+      ],
+      "timeline": "Immediate (0-72 hours) for sorting and protection; 2-4 weeks for monitoring setup; 3-6 months for buffer zone establishment",
+      "monitoring_points": [
+        "Daily ozone concentration at 1m height",
+        "New leaf emergence rate and symptom progression",
+        "Moisture content of harvested leaves"
+      ]
+    }
+  },
+  "status": "completed"
+}

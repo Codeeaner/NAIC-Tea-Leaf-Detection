@@ -1,0 +1,87 @@
+{
+  "analysis_id": "analysis_34849e2b_1762666845",
+  "session_id": 65,
+  "timestamp": "2025-11-09T13:40:17.276461",
+  "processing_time": 28.2527,
+  "model_used": "qwen3-vl:235b-cloud",
+  "image_path": "results\\captured_image_1762604704416_56_65_annotated.jpg",
+  "detection_summary": {
+    "healthy_count": 2,
+    "unhealthy_count": 4,
+    "total_count": 6,
+    "health_percentage": 33.33333333333333
+  },
+  "ai_analysis": {
+    "analysis": {
+      "overall_assessment": "The tea leaf batch shows significant quality degradation with 66.7% of leaves classified as unhealthy, exhibiting severe necrotic damage and structural compromise. Only 33.3% of leaves meet basic health criteria, indicating poor field conditions or environmental stressors.",
+      "severity_level": "High",
+      "quality_grade": "Below standard"
+    },
+    "pollution_diagnosis": {
+      "symptoms_observed": "Black or necrotic spots",
+      "primary_pollution_source": [
+        "Ozone (O3) exposure"
+      ],
+      "pollution_reduction_solutions": [
+        "Install windbreaks with ozone-absorbing vegetation (e.g., poplar trees) around tea plantations to reduce direct exposure",
+        "Apply kaolin clay-based foliar sprays as a protective barrier to mitigate ozone absorption",
+        "Implement real-time air quality monitoring systems to schedule harvesting during low-ozone periods"
+      ]
+    },
+    "processing_recommendations": {
+      "immediate_actions": [
+        "Manually separate healthy leaves from damaged ones within 2 hours of harvest",
+        "Chill healthy leaves to 4°C to slow enzymatic degradation",
+        "Discard leaves with >50% necrotic area to prevent contamination of healthy batches"
+      ],
+      "sorting_strategy": "Use a two-tier visual sorting system: Grade A (undamaged leaves) for premium processing, Grade B (partially damaged) for lower-grade products, and rejects for composting",
+      "processing_method": "Process healthy leaves using orthodox rolling methods for premium black tea; convert partially damaged leaves to CTC (Crush, Tear, Curl) format for blended products",
+      "quality_preservation": [
+        "Maintain humidity at 65-70% during withering",
+        "Limit oxidation time to 30-45 minutes for damaged leaf batches",
+        "Use nitrogen flushing during storage of healthy leaf batches"
+      ]
+    },
+    "waste_prevention": {
+      "salvageable_portions": "Healthy leaves (33.3%) and partially damaged leaves with <30% necrosis (16.7%)",
+      "alternative_uses": [
+        "Convert severely damaged leaves into organic fertilizer through vermicomposting",
+        "Use necrotic leaf fragments as mulch for acid-loving companion plants",
+        "Extract polyphenols from damaged leaves for cosmetic applications"
+      ],
+      "composting_guidelines": "Layer damaged leaves with 3:1 ratio of carbon-rich materials (sawdust, straw), maintain 55-60°C temperature for 14 days with weekly turning to ensure pathogen elimination",
+      "prevention_measures": [
+        "Conduct quarterly soil testing for heavy metal contamination",
+        "Implement drip irrigation to reduce ozone uptake through stomata",
+        "Plant ozone-tolerant cover crops like clover between tea rows"
+      ]
+    },
+    "economic_impact": {
+      "estimated_loss_percentage": "66.7",
+      "cost_saving_opportunities": [
+        "Recover 15-20% value from damaged leaves through polyphenol extraction",
+        "Reduce waste disposal costs by 30% through on-site composting",
+        "Negotiate premium pricing for certified healthy leaf batches"
+      ],
+      "value_recovery_methods": [
+        "Partner with cosmetic manufacturers for leaf extract sales",
+        "Develop 'imperfect tea' product line for budget-conscious markets",
+        "Use composted material to reduce fertilizer costs by 25%"
+      ]
+    },
+    "recommendations": {
+      "priority_actions": [
+        "Immediate manual sorting and temperature control of healthy leaves",
+        "Installation of windbreak barriers within 2 weeks",
+        "Soil and air quality diagnostic testing within 7 days"
+      ],
+      "timeline": "Immediate (0-48 hours): Sorting and chilling; Short-term (2-4 weeks): Barrier installation; Long-term (3-6 months): Ecosystem restoration measures",
+      "monitoring_points": [
+        "Daily leaf necrosis progression tracking",
+        "Bi-weekly ozone concentration measurements at canopy height",
+        "Monthly soil pH and nutrient analysis"
+      ]
+    }
+  },
+  "status": "completed"
+}

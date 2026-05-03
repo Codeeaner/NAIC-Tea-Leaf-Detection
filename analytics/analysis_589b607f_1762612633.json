@@ -1,0 +1,88 @@
+{
+  "analysis_id": "analysis_589b607f_1762612633",
+  "session_id": 82,
+  "timestamp": "2025-11-08T22:36:24.445881",
+  "processing_time": 49.376143,
+  "model_used": "qwen3-vl:235b-cloud",
+  "image_path": "results\\captured_image_1762605643172_82_annotated.jpg",
+  "detection_summary": {
+    "healthy_count": 2,
+    "unhealthy_count": 4,
+    "total_count": 6,
+    "health_percentage": 33.33333333333333
+  },
+  "ai_analysis": {
+    "analysis": {
+      "overall_assessment": "The tea leaf batch shows significant quality degradation, with 66.7% of leaves classified as unhealthy due to visible necrotic damage and structural defects. Only 33.3% of leaves retain acceptable quality for standard processing.",
+      "severity_level": "High",
+      "quality_grade": "Below standard"
+    },
+    "pollution_diagnosis": {
+      "symptoms_observed": "Black or necrotic spots",
+      "primary_pollution_source": [
+        "Ozone (O3) exposure"
+      ],
+      "pollution_reduction_solutions": [
+        "Install ozone-absorbing vegetation buffers (e.g., willow, poplar) around tea fields",
+        "Apply foliar antioxidants (ascorbic acid-based sprays) as emergency protection during high-ozone periods",
+        "Implement real-time air quality monitoring with automated alert systems for ozone spikes"
+      ]
+    },
+    "processing_recommendations": {
+      "immediate_actions": [
+        "Hand-sort all leaves within 2 hours to prevent further degradation",
+        "Isolate healthy leaves in temperature-controlled storage (8-10°C)",
+        "Conduct microbial testing on damaged leaves for potential contamination"
+      ],
+      "sorting_strategy": "Three-tier sorting: 1) Fully healthy leaves (green border) for premium processing, 2) Moderately damaged leaves (0.47-0.63 confidence) for secondary products, 3) Severely damaged leaves (0.70-0.73 confidence) for waste stream",
+      "processing_method": "Healthy leaves: orthodox processing with minimal oxidation; Moderately damaged leaves: CTC (Crush, Tear, Curl) method to mask defects",
+      "quality_preservation": [
+        "Process healthy leaves within 4 hours of harvest",
+        "Use nitrogen-flushed packaging for healthy leaf batches",
+        "Maintain humidity below 60% during withering"
+      ]
+    },
+    "waste_prevention": {
+      "salvageable_portions": "Only the two green-border leaves (72% and 80% healthy confidence) are suitable for commercial tea production",
+      "alternative_uses": [
+        "Necrotic leaves for organic fertilizer production",
+        "Damaged leaves as substrate for mushroom cultivation",
+        "Shredded leaves for livestock bedding"
+      ],
+      "composting_guidelines": "Shred leaves into 2-3cm pieces, layer with 3:1 ratio of brown (dried leaves) to green (manure) materials, maintain 55-65°C for 14 days with weekly turning",
+      "prevention_measures": [
+        "Establish ozone monitoring stations at field perimeter",
+        "Implement staggered harvesting during high-pollution seasons",
+        "Use anti-oxidant foliar sprays 24h before predicted ozone events"
+      ]
+    },
+    "economic_impact": {
+      "estimated_loss_percentage": "66.7%",
+      "cost_saving_opportunities": [
+        "Recover 30% value from damaged leaves through organic fertilizer production",
+        "Reduce waste disposal costs by 40% via on-farm composting",
+        "Qualify for eco-certification premiums with pollution mitigation documentation"
+      ],
+      "value_recovery_methods": [
+        "Sell composted material to local vegetable growers",
+        "Partner with biogas facilities for energy conversion of unusable biomass",
+        "Develop 'defect tea' for industrial tannin extraction"
+      ]
+    },
+    "recommendations": {
+      "priority_actions": [
+        "Implement immediate hand-sorting and segregation protocol",
+        "Install ozone monitoring system within 72 hours",
+        "Begin composting program for damaged leaves within 5 days"
+      ],
+      "timeline": "Critical actions within 1 week, pollution mitigation systems within 30 days, full recovery plan implementation in 90 days",
+      "monitoring_points": [
+        "Daily ozone concentration levels",
+        "Weekly leaf health assessment of new growth",
+        "Monthly composting efficiency metrics",
+        "Bi-weekly market analysis for alternative product pricing"
+      ]
+    }
+  },
+  "status": "completed"
+}

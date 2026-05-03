@@ -1,0 +1,88 @@
+{
+  "analysis_id": "analysis_040c91a0_1762649632",
+  "session_id": 57,
+  "timestamp": "2025-11-09T08:53:27.671424",
+  "processing_time": 24.578118,
+  "model_used": "qwen3-vl:235b-cloud",
+  "image_path": "results\\captured_image_1762604704416_56_57_annotated.jpg",
+  "detection_summary": {
+    "healthy_count": 2,
+    "unhealthy_count": 4,
+    "total_count": 6,
+    "health_percentage": 33.33333333333333
+  },
+  "ai_analysis": {
+    "analysis": {
+      "overall_assessment": "The tea leaf batch shows significant quality degradation with 66.7% of leaves classified as unhealthy, indicating severe environmental stress or contamination. The presence of extensive necrotic damage and holes compromises both appearance and potential market value.",
+      "severity_level": "High",
+      "quality_grade": "Below standard"
+    },
+    "pollution_diagnosis": {
+      "symptoms_observed": "Black or necrotic spots",
+      "primary_pollution_source": [
+        "Herbicide damage or soil contamination"
+      ],
+      "pollution_reduction_solutions": [
+        "Immediately conduct soil testing for residual herbicides and heavy metals",
+        "Install physical barriers (e.g., windbreaks) to prevent chemical drift from neighboring fields",
+        "Implement buffer zones with cover crops to absorb contaminants before they reach tea plants",
+        "Switch to organic fertilizers and certified non-toxic pest control methods"
+      ]
+    },
+    "processing_recommendations": {
+      "immediate_actions": [
+        "Isolate healthy leaves (33.3%) from damaged ones to prevent cross-contamination",
+        "Halt processing of unhealthy leaves until root cause is identified",
+        "Sanitize all equipment to remove potential chemical residues"
+      ],
+      "sorting_strategy": "Manual sorting by visual inspection: separate leaves with >30% damage (unhealthy) from those with minor blemishes (potential for secondary products) and fully healthy leaves (premium use)",
+      "processing_method": "Process healthy leaves using orthodox methods for premium grade; convert moderately damaged leaves into CTC (Crush, Tear, Curl) format for lower-tier markets",
+      "quality_preservation": [
+        "Store healthy leaves in temperature-controlled, humidity-regulated environments",
+        "Use antioxidant-rich rinsing solutions during initial processing to mitigate oxidative damage",
+        "Limit exposure to light and air during transportation"
+      ]
+    },
+    "waste_prevention": {
+      "salvageable_portions": "Healthy leaves (33.3%) and leaf fragments with <20% damage can be used for lower-grade tea or extracts",
+      "alternative_uses": [
+        "Convert damaged leaves into tea-based compost accelerators",
+        "Use for producing tea polyphenol extracts for cosmetic applications",
+        "Incorporate into animal feed supplements (after safety testing)"
+      ],
+      "composting_guidelines": "Shred unusable leaves and mix with 3:1 ratio of brown materials (straw, wood chips); maintain moisture at 50-60% and turn pile weekly for 8-12 weeks to ensure complete decomposition",
+      "prevention_measures": [
+        "Implement pre-planting soil remediation with mycorrhizal fungi",
+        "Establish regular leaf tissue analysis (quarterly) to detect early contamination",
+        "Adopt precision agriculture techniques to minimize chemical over-application"
+      ]
+    },
+    "economic_impact": {
+      "estimated_loss_percentage": "66.7%",
+      "cost_saving_opportunities": [
+        "Recover 30% value from healthy leaves through premium market channels",
+        "Reduce waste disposal costs by 40% through on-farm composting",
+        "Generate additional revenue from tea extract byproducts"
+      ],
+      "value_recovery_methods": [
+        "Sell healthy leaves as specialty single-origin tea",
+        "Partner with cosmetic manufacturers for damaged leaf extracts",
+        "Use composted material to reduce fertilizer costs by 25%"
+      ]
+    },
+    "recommendations": {
+      "priority_actions": [
+        "Immediately isolate and process healthy leaves to prevent further degradation",
+        "Conduct comprehensive soil and water testing within 72 hours",
+        "Implement emergency buffer zones around affected plots"
+      ],
+      "timeline": "Immediate (0-72 hours) for isolation and testing; 2-4 weeks for buffer zone establishment; 3-6 months for full remediation plan implementation",
+      "monitoring_points": [
+        "Weekly leaf health assessments using spectral imaging",
+        "Monthly soil contaminant level tracking",
+        "Processing yield and quality metrics for salvaged leaves"
+      ]
+    }
+  },
+  "status": "completed"
+}

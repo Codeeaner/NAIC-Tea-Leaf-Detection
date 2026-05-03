@@ -1,0 +1,87 @@
+{
+  "analysis_id": "analysis_207a9357_1762653149",
+  "session_id": 60,
+  "timestamp": "2025-11-09T09:51:59.754599",
+  "processing_time": 29.929162,
+  "model_used": "qwen3-vl:235b-cloud",
+  "image_path": "results\\captured_image_1762604704416_56_60_annotated.jpg",
+  "detection_summary": {
+    "healthy_count": 2,
+    "unhealthy_count": 4,
+    "total_count": 6,
+    "health_percentage": 33.33333333333333
+  },
+  "ai_analysis": {
+    "analysis": {
+      "overall_assessment": "The tea leaf batch shows significant quality degradation with 66.7% of leaves classified as unhealthy, indicating widespread physiological stress and tissue damage. The presence of necrotic spots and irregular lesions suggests acute environmental stress rather than natural senescence.",
+      "severity_level": "High",
+      "quality_grade": "Below standard"
+    },
+    "pollution_diagnosis": {
+      "symptoms_observed": "Black or necrotic spots",
+      "primary_pollution_source": [
+        "Ozone (O3) exposure"
+      ],
+      "pollution_reduction_solutions": [
+        "Install ozone-absorbing windbreaks (e.g., poplar or willow buffer zones) around tea fields",
+        "Apply kaolin clay-based foliar sprays as immediate protective barrier against ozone penetration",
+        "Implement real-time air quality monitoring with automated irrigation activation during high-ozone periods"
+      ]
+    },
+    "processing_recommendations": {
+      "immediate_actions": [
+        "Hand-sort healthy leaves within 2 hours of harvest to prevent cross-contamination",
+        "Chill sorted healthy leaves to 4°C immediately to slow enzymatic degradation",
+        "Isolate unhealthy leaves in ventilated containers to prevent moisture buildup"
+      ],
+      "sorting_strategy": "Three-tier sorting: 1) Premium (undamaged green leaves), 2) Industrial-grade (partially damaged leaves), 3) Compost (severely necrotic leaves)",
+      "processing_method": "Process healthy leaves using orthodox rolling method for premium black tea; convert damaged leaves to CTC (Crush, Tear, Curl) for instant tea products",
+      "quality_preservation": [
+        "Use nitrogen-flushed packaging for healthy leaves",
+        "Apply ascorbic acid wash (0.5%) to cut edges of damaged leaves before processing",
+        "Maintain 60-65% humidity during withering of salvageable leaves"
+      ]
+    },
+    "waste_prevention": {
+      "salvageable_portions": "25% of leaf surface area on partially damaged leaves (non-necrotic regions)",
+      "alternative_uses": [
+        "Necrotic leaves for biopesticide production via fermentation",
+        "Damaged leaf fragments as organic mulch for acid-loving crops",
+        "Compost feedstock for vermicomposting with earthworms"
+      ],
+      "composting_guidelines": "Layer unusable leaves with 3:1 ratio of brown materials (straw/sawdust), maintain 55-60°C for 14 days with weekly turning, add effective microorganisms (EM) to accelerate decomposition",
+      "prevention_measures": [
+        "Plant ozone-tolerant tea clones (e.g., TV1, TV2) in high-risk zones",
+        "Implement precision irrigation to maintain stomatal closure during peak ozone hours (10am-2pm)",
+        "Conduct quarterly leaf tissue analysis for early pollution stress detection"
+      ]
+    },
+    "economic_impact": {
+      "estimated_loss_percentage": "66.7%",
+      "cost_saving_opportunities": [
+        "Convert 40% of damaged leaves to value-added tea extracts for nutraceutical market",
+        "Sell composted waste to organic farms at $0.15/kg",
+        "Reduce pesticide costs by 30% through integrated pest management using damaged leaf byproducts"
+      ],
+      "value_recovery_methods": [
+        "Extract polyphenols from necrotic leaves for cosmetic applications",
+        "Produce tea leaf biochar for soil amendment",
+        "Develop educational kits for agricultural schools using damaged leaf samples"
+      ]
+    },
+    "recommendations": {
+      "priority_actions": [
+        "Implement immediate hand-sorting protocol with quality control checkpoints",
+        "Establish 50m-wide ozone buffer zones within 30 days using fast-growing species",
+        "Partner with local organic farms for waste-to-compost revenue stream"
+      ],
+      "timeline": "Critical actions within 72 hours; buffer zones established in 30 days; full system optimization in 90 days",
+      "monitoring_points": [
+        "Daily ozone concentration levels at canopy height",
+        "Weekly necrosis progression rate in new growth",
+        "Monthly economic analysis of value recovery streams"
+      ]
+    }
+  },
+  "status": "completed"
+}

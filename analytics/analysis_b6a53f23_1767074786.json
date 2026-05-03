@@ -1,0 +1,85 @@
+{
+  "analysis_id": "analysis_b6a53f23_1767074786",
+  "session_id": 67,
+  "timestamp": "2025-12-30T14:05:56.165119",
+  "processing_time": 29.996771,
+  "model_used": "qwen3-vl:235b-cloud",
+  "image_path": "results\\20221213_084406_jpg.rf.790b93a2e56a98879659401d50b69202_67_annotated.jpg",
+  "detection_summary": {
+    "healthy_count": 0,
+    "unhealthy_count": 1,
+    "total_count": 1,
+    "health_percentage": 0.0
+  },
+  "ai_analysis": {
+    "analysis": {
+      "overall_assessment": "The single detected tea leaf shows severe necrotic damage with extensive black/brown lesions, indicating critical health deterioration. No healthy tissue remains for standard tea production.",
+      "severity_level": "High",
+      "quality_grade": "Reject"
+    },
+    "pollution_diagnosis": {
+      "symptoms_observed": "Black or necrotic spots",
+      "primary_pollution_source": [
+        "Ozone (O3) exposure"
+      ],
+      "pollution_reduction_solutions": [
+        "Apply kaolin-based foliar sprays immediately to create a protective barrier reducing ozone absorption",
+        "Install windbreaks with ozone-absorbing species (e.g., poplar, willow) around plantation perimeters",
+        "Implement real-time air quality monitoring with automated alerts for ozone spikes during high-risk seasons"
+      ]
+    },
+    "processing_recommendations": {
+      "immediate_actions": [
+        "Halt harvesting in affected zones until pollution source is mitigated",
+        "Conduct full-field inspection to identify extent of ozone damage",
+        "Test soil and leaf samples for secondary contaminants"
+      ],
+      "sorting_strategy": "Complete rejection of all leaves showing necrotic symptoms; no healthy portions to retain",
+      "processing_method": "Not suitable for orthodox tea processing; consider experimental extraction for polyphenol concentrates if economically viable",
+      "quality_preservation": [
+        "Store healthy leaves from unaffected areas in nitrogen-flushed containers",
+        "Reduce withering time by 30% for any salvageable leaves to minimize oxidation"
+      ]
+    },
+    "waste_prevention": {
+      "salvageable_portions": "No usable portions for commercial tea production",
+      "alternative_uses": [
+        "Compost for organic matter enrichment",
+        "Experimental use in medicinal herbal blends (with safety testing)",
+        "Soil amendment for non-food crops"
+      ],
+      "composting_guidelines": "Chop leaves into 2cm pieces, layer with 3:1 ratio of carbon-rich materials (straw/sawdust), maintain 55-60°C for 14 days to neutralize potential phytotoxins",
+      "prevention_measures": [
+        "Plant ozone-tolerant tea cultivars (e.g., 'S3A/3', 'TV1') in high-risk zones",
+        "Establish 50m buffer zones with pollution-scavenging vegetation",
+        "Schedule harvesting during early morning when ozone levels are lowest"
+      ]
+    },
+    "economic_impact": {
+      "estimated_loss_percentage": "100%",
+      "cost_saving_opportunities": [
+        "Convert rejected leaves into certified organic compost for revenue",
+        "Apply for agricultural disaster relief funds for pollution-affected crops",
+        "Reduce labor costs by temporarily shifting workers to maintenance tasks"
+      ],
+      "value_recovery_methods": [
+        "Partner with biotech firms for polyphenol extraction trials",
+        "Develop educational materials about pollution impacts for industry training"
+      ]
+    },
+    "recommendations": {
+      "priority_actions": [
+        "Deploy ozone monitoring system within 72 hours",
+        "Apply emergency kaolin spray to all remaining healthy plants",
+        "Initiate soil remediation with biochar application in affected zones"
+      ],
+      "timeline": "Immediate (0-72h) for monitoring/spraying; 2-4 weeks for buffer zone establishment; 3-6 months for cultivar replacement",
+      "monitoring_points": [
+        "Daily ozone concentration levels",
+        "New leaf emergence quality for 3 growth cycles",
+        "Soil microbiome recovery post-remediation"
+      ]
+    }
+  },
+  "status": "completed"
+}
